@@ -2,30 +2,30 @@
 
 # 0 1 Knapsak
 
-# def knapsak(value_array, weight_array, weight, n):
-#     if t[n][weight] != -1:
-#         return t[n][weight]
-#
-#     if weight == 0 or n == 0:
-#         return 0
-#
-#     elif weight_array[n-1] > weight:
-#         t[n][weight] = knapsak(value_array, weight_array, weight, n-1)
-#         return t[n][weight]
-#
-#     else:
-#         t[n][weight] = max(value_array[n-1] + knapsak(value_array, weight_array, weight - weight_array[n-1], n-1),
-#                    knapsak(value_array, weight_array, weight, n-1))
-#         return t[n][weight]
-#
-#
+def knapsak(value_array, weight_array, weight, n):
+    if t[n][weight] != -1:
+        return t[n][weight]
+
+    if weight == 0 or n == 0:
+        return 0
+
+    elif weight_array[n-1] > weight:
+        t[n][weight] = knapsak(value_array, weight_array, weight, n-1)
+        return t[n][weight]
+
+    else:
+        t[n][weight] = max(value_array[n-1] + knapsak(value_array, weight_array, weight - weight_array[n-1], n-1),
+                   knapsak(value_array, weight_array, weight, n-1))
+        return t[n][weight]
+
+
 val = [60, 100, 120]
 wt = [10, 20, 30]
 W = 50
 n = len(val)
 
-# t= [[-1 for i in range(W+1)] for j in range(n+1)]
-# print(knapsak(val, wt, W, n))
+t= [[-1 for i in range(W+1)] for j in range(n+1)]
+print(knapsak(val, wt, W, n))
 
 # 0 1 knapsack top Down
 
