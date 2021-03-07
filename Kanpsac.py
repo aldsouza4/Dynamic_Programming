@@ -51,7 +51,55 @@ def knapsack(value_array, weight_array, weight):
     print(t[n][weight])
 
 
-knapsack(val, wt, W)
+# knapsack(val, wt, W)
+
+
+# Unbounded knapsac
+
+def unbounded(arr, target, n):
+    if target == 0:
+        return True
+
+    elif n==0:
+        return False
+
+    elif arr[n-1] <= target:
+        return unbounded(arr, target-arr[n-1], n) or unbounded(arr, target, n-1)
+
+    else:
+        return unbounded(arr, target, n-1)
+
+
+array = [4, 5]
+tar = 170
+
+# print(unbounded(array, tar, 2))
+
+# Rod Cutting Problem
+#  Given a rod of length n inches and an array of prices that contains prices of all
+#  pieces of size smaller than n.
+#  Determine the  maximum value obtainable by cutting up the rod and selling the pieces
+
+
+def rod_cutting(val, cuts, length, n):
+    if length == 0 or n==0:
+        return 0
+
+    elif cuts[n-1] <= length:
+        return max(rod_cutting(val, cuts, length, n-1),
+                   val[n-1] + rod_cutting(val, cuts, length - cuts[n-1], n))
+
+    else:
+        return rod_cutting(val, cuts, length, n-1)
+
+
+
+cut = list(range(1, 8+1))
+val = [1, 5, 8, 9, 10, 17, 17, 20]
+l = 8
+x =len(val)
+
+# print(rod_cutting(val, cut, l, x))
 
 
 
