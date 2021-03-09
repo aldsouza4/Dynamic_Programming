@@ -163,7 +163,7 @@ def min_coinchange(arr, target):
 
 lo = [25, 10, 5]
 V = 30
-# print(min_coinchange(lo, V))
+print(min_coinchange(lo, V))
 
 
 
