@@ -1,4 +1,3 @@
-
 # 0 1 Knapsak
 
 def knapsak(value_array, weight_array, weight, n):
@@ -8,8 +7,8 @@ def knapsak(value_array, weight_array, weight, n):
     if weight == 0 or n == 0:
         return 0
 
-    elif weight_array[ n -1] > weight:
-        t[n][weight] = knapsak(value_array, weight_array, weight, n- 1)
+    elif weight_array[n - 1] > weight:
+        t[n][weight] = knapsak(value_array, weight_array, weight, n - 1)
         return t[n][weight]
 
     else:
@@ -163,7 +162,41 @@ def min_coinchange(arr, target):
 
 lo = [25, 10, 5]
 V = 30
-print(min_coinchange(lo, V))
+# print(min_coinchange(lo, V))
 
 
+# fractional knapsac
 
+wt = [10, 40, 20, 30]
+val = [60, 40, 100, 120]
+capacity = 50
+
+
+def fracknapsack(val_arry, wt_arry, weight):
+    ratio = []
+    for i in range(len(val_arry)):
+        ratio.append(val_arry[i] / wt_arry[i])
+
+    # print(ratio.index(max(ratio)))
+    mx_weight = 0
+
+    while weight > 0:
+        ind = ratio.index(max(ratio))
+
+        if weight >= wt_arry[ind]:
+
+            weight -= wt_arry[ind]
+            mx_weight += val_arry[ind]
+
+            wt_arry.remove(wt_arry[ind])
+            val_arry.remove(val_arry[ind])
+            ratio.remove(ratio[ind])
+
+        else:
+            temp = (weight / wt_arry[ind]) * val_arry[ind]
+            mx_weight += temp
+            weight -= wt_arry[ind]
+
+    return mx_weight
+
+print(fracknapsack(val, wt, capacity))
