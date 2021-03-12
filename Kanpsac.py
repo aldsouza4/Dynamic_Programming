@@ -199,4 +199,21 @@ def fracknapsack(val_arry, wt_arry, weight):
 
     return mx_weight
 
-print(fracknapsack(val, wt, capacity))
+
+# print(fracknapsack(val, wt, capacity))
+
+def twoSum(arr, target, n=4):
+    if n == 0 and target != 0:
+        return False
+
+    elif n == 0 and target == 0:
+        return True
+
+    for i in arr:
+        if twoSum(arr, target - i, n - 1):
+            return True
+
+    return False
+
+
+print(twoSum([3, 5, 6, 8, 2, 3], 10))
