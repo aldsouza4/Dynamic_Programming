@@ -123,21 +123,94 @@ n = 4
 # so that you are the last one remaining and so survive.
 
 def josephus(n, k):
+    men = list(range(1, n + 1))
 
-    men = list(range(1, n+1))
-
-    def killmen(arr:list, k, start):
+    def killmen(arr: list, k, start):
         if len(arr) == 1:
             return arr[0]
 
         siz = len(arr)
-        i = (start+k-1)%siz
+        i = (start + k - 1) % siz
         arr.remove(arr[i])
-        return killmen(arr, k, i+1)
+        return killmen(arr, k, i + 1)
 
-    return killmen(men, k-1, 1)
+    return killmen(men, k - 1, 1)
 
 
 # print(josephus(40, 7))
 
 
+# print all permutations of a string
+
+def permut(string, uf=0):
+    if uf == len(string):
+        print(string)
+        return
+
+    for i in range(uf, len(string)):
+        string = string[:uf] + string[i] + string[uf:i] + string[i + 1:]
+        permut(string, uf + 1)
+
+
+# permut("ABC")
+
+# Given an array of non-negative integers nums, you are initially
+# positioned at the first index of the array. Each element in the array represents
+# your maximum jump length at that position. Determine if you are able
+# to reach the last index.
+
+def possible(arr, i, memo={}):
+    if i >= len(arr):
+        return False
+
+    if i in memo:
+        return memo[i]
+
+    elif i == len(arr) - 1:
+        return True
+
+    for k in range(1, arr[i] + 1):
+        if possible(arr, i + k, memo):
+            memo[i] = True
+            return memo[i]
+
+    memo[i] = False
+    return memo[i]
+
+
+# print(possible([2, 3, 1, 1, 4], 0))
+
+def countcanjump(arr, i, count):
+    if i >= len(arr):
+        return False
+
+    elif i == len(arr) - 1:
+        return True
+
+    mn = float('inf')
+    for k in range(1, arr[i] + 1):
+        if countcanjump(arr, i + k, count + 1):
+            mn = min(count, mn)
+            print(mn)
+            return count
+
+    return False
+
+
+# print(countcanjump([2, 3, 1, 1, 4], 0, 0))
+
+# You are given an array prices where prices[i] is the price of a
+# given stock on the ith day. You want to maximize your profit by choosing a single
+# day to buy one stock and choosing a different day in the future to sell that stock.
+
+def beststock(arr):
+    max_profit = 0
+
+    for i in range(len(arr) - 1):
+        mx = max(arr[i + 1:]) - arr[i]
+        max_profit = max(max_profit, mx)
+
+    return max_profit
+
+
+print(beststock([7, 1, 5, 3, 6, 4]))
