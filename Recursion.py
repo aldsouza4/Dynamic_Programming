@@ -180,21 +180,16 @@ def possible(arr, i, memo={}):
 
 # print(possible([2, 3, 1, 1, 4], 0))
 
-def countcanjump(arr, i, count):
-    if i >= len(arr):
-        return False
+def countjump(arr, i=0, counter=0):
 
-    elif i == len(arr) - 1:
-        return True
+    if i >= len(arr)-1:
+        return 0
 
-    mn = float('inf')
     for k in range(1, arr[i] + 1):
-        if countcanjump(arr, i + k, count + 1):
-            mn = min(count, mn)
-            print(mn)
-            return count
 
-    return False
+        counter = max(counter, countjump(arr, i+k))
+
+    return 1 + counter
 
 
 # print(countcanjump([2, 3, 1, 1, 4], 0, 0))
@@ -213,4 +208,4 @@ def beststock(arr):
     return max_profit
 
 
-print(beststock([7, 1, 5, 3, 6, 4]))
+# print(beststock([7, 1, 5, 3, 6, 4]))
