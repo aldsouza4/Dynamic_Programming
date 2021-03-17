@@ -141,18 +141,20 @@ def josephus(n, k):
 
 
 # print all permutations of a string
-
-def permut(string, uf=0):
-    if uf == len(string):
-        print(string)
+ans = []
+def permut(string, fixed=0):
+    if fixed == len(string):
+        ans.append(string)
         return
 
-    for i in range(uf, len(string)):
-        string = string[:uf] + string[i] + string[uf:i] + string[i + 1:]
-        permut(string, uf + 1)
+    for i in range(fixed, len(string)):
+        string = string[:fixed] + string[i] + string[fixed:i] + string[i + 1:]
+        permut(string, fixed + 1)
 
 
-# permut("ABC")
+# permut("ABCDEF")
+# print(ans)
+
 
 # Given an array of non-negative integers nums, you are initially
 # positioned at the first index of the array. Each element in the array represents
