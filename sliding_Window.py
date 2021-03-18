@@ -21,7 +21,7 @@ def max_sum(arr):
     return mx1
 
 
-ar = [4, 1, 1, 1, 2, 3, 5]
+# ar = [4, 1, 1, 1, 2, 3, 5]
 
 
 # print(max_sum(ar))
@@ -194,11 +194,12 @@ def max_sumsize(arr, k):
 # v = [4, 1, 1, 1, 2, 3, 5]
 # k = 5
 # print(max_sumsize(v, 5))
-
+# Given an array containing N positive integers and an integer K. Your task is to find the
+# length of the longest Sub-Array with sum of the elements equal to the given value K.
 
 def maxSizesum(arr, k):
     i = 0
-    j = 1
+    j = 0
 
     mx = 0
 
@@ -222,4 +223,173 @@ def maxSizesum(arr, k):
 # k = 5
 # print(maxSizesum(v, k))
 
+v = ["a", "a", "b", "a", "c", "b", "e", "b", "e", "b", "e"]
 
+
+# Given a string you need to print the size of the longest possible
+# substring that has exactly k unique characters.
+
+def largestuniquestr(arr, k):
+    i = 0
+    j = 0
+    mx = 0
+    map = {}
+
+    while j < len(arr):
+
+        if arr[j] in map:
+            map[arr[j]] += 1
+
+        elif arr[j] not in map:
+            map[arr[j]] = 1
+
+        if len(map) == k:
+            mx = max(mx, sum(map.values()))
+
+        elif len(map) > k:
+            while len(map) > k:
+                if map.get(arr[i]) == 1:
+                    del map[arr[i]]
+                else:
+                    map[arr[i]] -= 1
+                i += 1
+
+        j += 1
+
+    return mx
+
+
+# print(largestuniquestr(v, 3))
+
+# Given a string s, find the length of the longest substring without repeating characters.
+
+
+def largestuniquesubtring(arr):
+    i = 0
+    j = 0
+    map = {}
+    mx = 0
+
+    while j < len(arr):
+
+        if arr[j] in map:
+            map[arr[j]] += 1
+
+        elif arr[j] not in map:
+            map[arr[j]] = 1
+
+        if len(map) == sum(map.values()):
+            mx = max(mx, len(map))
+
+        elif len(map) < sum(map.values()):
+            while len(map) < sum(map.values()):
+
+                if map.get(arr[i]) == 1:
+                    del map[arr[i]]
+
+                else:
+                    map[arr[i]] -= 1
+
+                i += 1
+
+        j += 1
+
+    return mx
+
+
+# print(largestuniquesubtring("abcabcbb"))
+
+
+# John is at a toy store help him pick maximum number of toys.
+# He can only select in a continuous manner and he can select only two types of toys.
+
+
+def picktoys(arr):
+    i = 0
+    j = 0
+    map = {}
+    mx = 0
+
+    arr = list(arr)
+
+    while j < len(arr):
+
+        if arr[j] in map:
+            map[arr[j]] += 1
+
+        elif arr[j] not in map:
+            map[arr[j]] = 1
+
+        if len(map) == 2:
+            mx = max(mx, sum(map.values()))
+
+        elif len(map) > 2:
+            while len(map) > 2:
+                if map.get(arr[i]) == 1:
+                    del map[arr[i]]
+
+                else:
+                    map[arr[i]] -= 1
+
+                i += 1
+        j += 1
+
+    return mx
+
+
+# print(picktoys("abaccab"))
+
+# Given two strings s and t, return the minimum window in s which will contain all
+# the characters in t. If there is no such window in s that covers all characters in t, return the empty string "".
+
+# Input: s = "ADOBECODEBANC", t = "ABC"
+# Output: "BANC"
+
+def maxwindowstr(arr, checkarr):
+    i = 0
+    j = 0
+    j_index = 0
+    i_index = 0
+    checkmap = {}
+    mx = float('inf')
+
+    arr = list(arr)
+    checkarr = list(checkarr)
+    count = len(checkarr)
+
+
+    for k in checkarr:
+        if k not in checkmap:
+            checkmap[k] = 1
+        else:
+            checkmap[k] += 1
+
+
+    while j < len(arr):
+
+        if arr[j] in checkmap:
+            checkmap[arr[j]] -= 1
+            if checkmap[arr[j]] == 0:
+                count -= 1
+
+        if count == 0:
+            while count == 0:
+                if j - i + 1 < mx:
+                    j_index = j
+                    i_index = i
+                    mx = j - i + 1
+
+                if arr[i] in checkmap:
+                    if checkmap.get(arr[i]) == 0:
+                        checkmap[arr[i]] += 1
+                        count += 1
+                    elif checkmap.get(arr[i]) < 0:
+                        checkmap[arr[i]] += 1
+                i += 1
+
+        j += 1
+
+    return "".join(arr[i_index:j_index+1])
+
+
+print(maxwindowstr("ADOBECODEBANC", "ABC"))
