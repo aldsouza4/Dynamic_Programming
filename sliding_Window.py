@@ -350,26 +350,25 @@ def maxwindowstr(arr, checkarr):
     j = 0
     j_index = 0
     i_index = 0
-    checkmap = {}
+    map = {}
     mx = float('inf')
 
     arr = list(arr)
     checkarr = list(checkarr)
-    count = len(checkarr)
-
 
     for k in checkarr:
-        if k not in checkmap:
-            checkmap[k] = 1
+        if k not in map:
+            map[k] = 1
         else:
-            checkmap[k] += 1
+            map[k] += 1
 
+    count = len(map)
 
     while j < len(arr):
 
-        if arr[j] in checkmap:
-            checkmap[arr[j]] -= 1
-            if checkmap[arr[j]] == 0:
+        if arr[j] in map:
+            map[arr[j]] -= 1
+            if map[arr[j]] == 0:
                 count -= 1
 
         if count == 0:
@@ -379,12 +378,12 @@ def maxwindowstr(arr, checkarr):
                     i_index = i
                     mx = j - i + 1
 
-                if arr[i] in checkmap:
-                    if checkmap.get(arr[i]) == 0:
-                        checkmap[arr[i]] += 1
+                if arr[i] in map:
+                    if map.get(arr[i]) == 0:
+                        map[arr[i]] += 1
                         count += 1
-                    elif checkmap.get(arr[i]) < 0:
-                        checkmap[arr[i]] += 1
+                    elif map.get(arr[i]) < 0:
+                        map[arr[i]] += 1
                 i += 1
 
         j += 1
@@ -392,4 +391,4 @@ def maxwindowstr(arr, checkarr):
     return "".join(arr[i_index:j_index+1])
 
 
-print(maxwindowstr("ADOBECODEBANC", "ABC"))
+print(maxwindowstr("ADOBECODEBANC", "AEOBC"))

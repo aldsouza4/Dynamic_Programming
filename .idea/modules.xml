@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Dynamic_Programming.iml" filepath="$PROJECT_DIR$/.idea/Dynamic_Programming.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../LSTMStock/.idea/LSTMStock.iml" filepath="$PROJECT_DIR$/../LSTMStock/.idea/LSTMStock.iml" />
     </modules>
   </component>
 </project>
