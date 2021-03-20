@@ -373,10 +373,102 @@ def bitonicarry(arr):
 
 
 nums = [1, 3, 5,  4, 5, 6, 3, 2 ]
-print(bitonicarry(nums))
+# print(bitonicarry(nums))
+
+
+# Given a bitonic sequence of n distinct elements, write a program to find a given element x
+# in the bitonic sequence in O(log n) time. A Bitonic Sequence is a sequence of numbers which
+# is first strictly increasing then after a point strictly decreasing.
+
+def findinBiotonic(arr, ele):
+
+    peak = findPeak(arr)
+    left = binarySearch(arr, ele, 0, peak)
+    right = binarySearch(arr, ele, peak, len(arr)-1)
+
+    return max(left, right)
+
+
+ar = [-3, 9, 8, 20, 17, 5, 1]
+# print(findinBiotonic(ar, 20))
 
 
 
+def searchMat(arr, ele):
+    n = len(mat)
+    m = len(mat[0])
+
+    i =0
+    j = len(mat[0]) - 1
+
+    while i>=0 and i<n and j>=0 and j<m:
+        if arr[i][j] == ele:
+            return (i, j)
+
+        elif arr[i][j] > ele:
+            j -= 1
+
+        elif arr[i][j] < ele:
+            i += 1
+
+    return -1
+
+
+mat =  [[10, 20, 30, 40],
+        [15, 25, 35, 45],
+        [27, 29, 37, 45],
+        [32, 33, 39, 50]]
+# print(searchMat(mat, 29))
+
+
+# Given number of pages in n different books and m students. The books are arranged
+# in ascending order of number of pages. Every student is assigned to read some
+# consecutive books. The task is to assign books in such a way that the maximum
+# number of pages assigned to a student is minimum.
+
+def isvalid(arr, n, pages, key):
+    students = 1
+    sum = 0
+    for i in arr:
+        sum += i
+        if sum>pages:
+            students+=1
+            sum = i
+
+    if students>key:
+        return False
+
+    return True
+
+def allocatePage(arr, key):
+    n =len(arr)
+    start = max(arr)
+    end = sum(arr)
+    result = -1
+    temp_arr = list(range(start, end+1))
+
+    if n<key:
+        return -1
+
+    while start<=end:
+        mid = (start+end)//2
+
+        if isvalid(arr, n, mid, key):
+            result = mid
+            end = mid-1
+
+        else:
+            start = mid+1
+
+    return result
+
+
+
+
+ar = [12, 34, 67, 90]
+m = 2
+
+# print(allocatePage(ar, m))
 
 
 
