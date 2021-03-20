@@ -181,6 +181,220 @@ def nearlySortedsearch(arr, element, start, end):
     return -1
 
 
-ar = [10, 3, 40, 20, 50, 80, 70]
+# ar = [10, 3, 40, 20, 50, 80, 70]
 # print(nearlySortedsearch(ar, 80, 0, len(ar)-1))
+
+
+# Given a sorted array and a value x, the floor of x is the largest element in array smaller
+# than or equal to x. Write efficient functions to find floor of x.
+
+
+def floorElement(arr, ele):
+
+    start = 0
+    end = len(arr)-1
+    res = None
+
+    while start<=end:
+
+        mid = (start+end)//2
+
+        if arr[mid] <= ele:
+            res = arr[mid]
+            start = mid + 1
+
+        elif arr[mid] > ele:
+            end = mid-1
+
+    return res
+
+
+# print(floorElement([1, 2, 4, 8, 10, 10, 12, 19], 5))
+
+def ceilElement(arr, ele):
+    start = 0
+    end = len(arr)-1
+    res = None
+
+    while start<=end:
+
+        mid = (start+end)//2
+
+        if arr[mid] >= ele:
+            res = arr[mid]
+            end = mid - 1
+
+        elif arr[mid] < ele:
+            start = mid + 1
+
+    return res
+
+
+arr = [1, 2, 8, 10, 10, 12, 19]
+
+# print(ceilElement(arr, 10))
+
+
+# Given an array of letters sorted in ascending order,
+# find the smallest letter in the the array which is greater than a given key letter.
+
+
+def alphaCeil(arr, alph):
+    start = 0
+    end = len(arr)-1
+
+    res = None
+
+    while start<=end:
+
+        mid = (start+end)//2
+
+        if arr[mid] > alph:
+            res = arr[mid]
+            end = mid-1
+
+        else:
+            start = mid + 1
+
+    return res
+
+
+aplhabets = ['a', 'c', 'f', 'h']
+# print(alphaCeil(aplhabets, 'c'))
+
+# find an element in an infinite array
+
+def infiniteSearch(arr, ele):
+    start = 0
+    end  = 1
+
+    while ele > arr[end]:
+        start = end
+        end = end * 2
+
+    return binarySearch(arr, ele, start, end-1)
+
+
+arr = [1, 2, 8, 10, 10, 12, 19]
+# print(infiniteSearch(arr, 10))
+
+
+# Given an infinite sorted array consisting 0s and 1s. The problem is to find the index of
+# first ‘1’ in that array. As the array is infinite, therefore it is guaranteed that number
+# ‘1’ will be present in the array.
+
+def find1inBinary(arr):
+    start = 0
+    end = 1
+
+    while 1>arr[end]:
+        start = end
+        end = end + end
+
+    while start<=end:
+
+        mid = (start+end)//2
+
+        if arr[mid]>0 and arr[mid+1] == 1:
+            return mid
+
+        elif arr[mid] == arr[mid-1] == 1:
+            end = mid - 1
+
+        elif arr[mid] == 0:
+            start = mid + 1
+
+    return -1
+
+# print(find1inBinary([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]))
+
+
+# Given a sorted array, find the element in the array which
+# has minimum difference with the given number.
+
+def minDiff(arr, ele):
+    bottom = floorElement(arr, ele)
+    top = ceilElement(arr, ele)
+
+    if abs(bottom-ele) > abs(top-ele):
+        return top
+    else:
+        return bottom
+
+# print(minDiff([1, 3, 8, 10, 13, 15], 12))
+
+
+# A peak element is an element that is greater than its neighbors.
+
+def findPeak(arr):
+    low = 0
+    high = len(arr)-1
+
+    while low<=high:
+
+        mid = (high+low)//2
+
+        if mid>0 and mid <len(arr)-1:
+
+            if arr[mid] > arr[mid-1] and arr[mid] > arr[mid+1]:
+                return mid
+
+            elif arr[mid - 1]> arr[mid]:
+                high = mid-1
+
+            else:
+                low = mid+1
+
+        elif mid==0:
+            if arr[0] > arr[1]:
+                return 0
+            else:
+                return 1
+
+        elif mid == len(arr)-1:
+            if arr[len(arr)-1] > arr[len(arr)-2]:
+                return len(arr)-1
+            else:
+                return len(arr)-2
+        else:
+            return -1
+
+
+# nums = [1,2,3,1]
+nums = [1, 3, 4, 5, 6, 3, 2 ]
+# print(findPeak(nums))
+
+
+def bitonicarry(arr):
+    left = findPeak(arr)
+    right  = findPeak(arr[::-1])
+
+    return left == (len(arr) - right-1)
+
+
+nums = [1, 3, 5,  4, 5, 6, 3, 2 ]
+print(bitonicarry(nums))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
