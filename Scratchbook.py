@@ -1,32 +1,9 @@
-# print an arraygreater to the right
-x = [1, 3, 2, 4]
-# op : [3, 4, 4, -1]
+# find the largest subarry with equal 1's and 0's
 
-def NGR(arr):
-    resArry = []
-    stack = []
-
-    for i in range(len(arr)-1, -1, -1):
-        if len(stack) == 0:
-            resArry.append(-1)
-
-        else:
-            if stack[-1] > arr[i]:
-                resArry.append(stack[-1])
-
-            elif stack[-1] < arr[i]:
-                while len(stack)>0 and stack[-1] < arr[i]:
-                    stack.pop()
-
-                if len(stack) == 0:
-                    resArry.append(-1)
-
-                else:
-                    resArry.append(stack[-1])
-
-        stack.append(arr[i])
-
-    return resArry[::-1]
+s = '00110011'
 
 
-print(NGR(x))
+
+
+
+print(zeroones(s))

@@ -388,7 +388,72 @@ def maxwindowstr(arr, checkarr):
 
         j += 1
 
-    return "".join(arr[i_index:j_index+1])
+    return "".join(arr[i_index:j_index + 1])
 
 
-print(maxwindowstr("ADOBECODEBANC", "AEOBC"))
+# print(maxwindowstr("ADOBECODEBANC", "AEOBC"))
+
+def isvalid(arr):
+    ones = 0
+    zeroes = 0
+    for i in arr:
+        if i == '1':
+            ones += 1
+        else:
+            zeroes += 1
+
+    return zeroes == ones
+
+
+def checkones(arr):
+    arr = list(arr)
+    i_index = 0
+    j_index = 0
+
+    mx = 0
+
+    for i in range(1, len(arr) + 1):
+        for j in range(len(arr)):
+            if isvalid(arr[j:j + i]):
+                mx = max(mx, len(arr[j:j + i]))
+                i_index = j
+                j_index = j + i
+
+    return "".join(arr[i_index:j_index + 1])
+
+
+s = '00011011110001100111'
+# print(checkones(s))
+
+def zeroones(arr):
+    arr = list(arr)
+    new_arr = []
+    i_index = 0
+    j_index = 0
+    for i in arr:
+        if i == '0':
+            new_arr.append(-1)
+        else:
+            new_arr.append(1)
+
+    map = {}
+    mx = 0
+    sum = 0
+    map[sum] = -1
+
+    for i in range(len(arr)):
+        sum += new_arr[i]
+        if sum in map:
+            # mx = max(mx, i-map[sum])
+            if i - map[sum] > mx:
+                mx = i - map[sum]
+                i_index = map[sum] + 1
+                j_index = i + 1
+
+        else:
+            map[sum] = i
+
+    return "".join(arr[i_index:j_index])
+
+
+# print(zeroones(s))
