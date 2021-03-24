@@ -285,8 +285,8 @@ def rainTrap(arr):
 
 w = [3, 0, 0, 2, 0, 4]
 
+print(rainTrap(w))
 
-# print(rainTrap(w))
 
 # Design a Data Structure SpecialStack that supports all the stack operations like
 # push(), pop(), isEmpty(), isFull() and an additional operation getMin() which
@@ -336,4 +336,3 @@ t.push(3)
 # print(t.min_ele)
 # t.pop()
 # print(t.min_ele)
-
