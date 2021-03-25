@@ -114,6 +114,7 @@ sum_range = sum(array)
 # print(small_sum(array, sum_range))
 real_diff = 1
 
+
 # Count the number of subset with a given difference
 def count_subset_diff(arr, target, n):
     t = [[0 for i in range(target + 1)] for i in range(n + 1)]
@@ -139,6 +140,4 @@ def count_subset_diff(arr, target, n):
         if target - 2 * i == real_diff:
             print(v[i])
 
-
 # count_subset_diff(array, sum_range, 4)
-

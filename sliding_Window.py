@@ -91,6 +91,8 @@ def negative_window(arr, win):
 
 
 # print(negative_window(vector, 3))
+# Given a word pat and a text txt. Return the count of the occurences of
+# anagrams of the word in the text.
 
 def check_anagram(large_str, check_str):
     k = len(check_str)
@@ -98,7 +100,7 @@ def check_anagram(large_str, check_str):
     map = {}
 
     for i in check_str:
-        if i not in map:
+        if i not in map :
             map[i] = 1
         else:
             map[i] += 1
@@ -136,6 +138,9 @@ def check_anagram(large_str, check_str):
 
 
 # print(check_anagram("ABCHJTABCCBAABCDHDJSJ", "ABC"))
+
+# Given an array arr[] of size N and an integer K. Find the maximum for
+# each and every contiguous subarray of size K.
 
 def maxWindow(arr, win):
     i = 0
