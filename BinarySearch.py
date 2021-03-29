@@ -209,7 +209,7 @@ def floorElement(arr, ele):
     return res
 
 
-# print(floorElement([1, 2, 4, 8, 10, 10, 12, 19], 5))
+print(floorElement([1, 2, 4, 8, 10, 10, 12, 19], 9))
 
 def ceilElement(arr, ele):
     start = 0
@@ -362,7 +362,7 @@ def findPeak(arr):
 
 # nums = [1,2,3,1]
 nums = [1, 3, 4, 5, 6, 3, 2 ]
-# print(findPeak(nums))
+# # print(findPeak(nums))
 
 
 def bitonicarry(arr):
