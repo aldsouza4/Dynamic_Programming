@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\DP -Trees.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Heaps.py">
           <value>
             <Attribute>
@@ -49,6 +56,13 @@
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\loan.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>

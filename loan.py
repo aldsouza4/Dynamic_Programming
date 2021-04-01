@@ -52,7 +52,7 @@ data['emp_length'] = data['emp_length'].fillna(data['emp_length'].mean())
 data['issue_d'] = data['issue_d'].apply(year_issued)
 data['earliest_cr_line'] = data['earliest_cr_line'].apply(year_issued)
 data['mort_acc'] = data['mort_acc'].fillna(data['mort_acc'].mean())
-data['address'] = data['address'].apply(lambda x : float(x[-5:]))
+data['address'] = data['address'].apply(lambda x: float(x[-5:]))
 # dummy_data_8 = pd.get_dummies(data['address'], drop_first=True)  # add this to data
 
 
@@ -65,12 +65,9 @@ data.dropna(inplace=True)
 data = pd.concat([data, dummy_data_1, dummy_data_2, dummy_data_3, dummy_data_4,
                   dummy_data_5, dummy_data_6, dummy_data_7], axis=1)
 
-# print(data.to_string())
-
 data.dropna(inplace=True)
 
-sns.countplot(data['Fully Paid'])
-plt.show()
+# print(data.to_string())
 
 scaler = MinMaxScaler()
 
@@ -83,7 +80,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 model = Sequential()
 
-model.add(Dense(81,  activation='relu'))
+model.add(Dense(81, activation='relu'))
 model.add(Dropout(0.2))
 
 # hidden layer
@@ -102,17 +99,19 @@ model.compile(loss='binary_crossentropy', optimizer='adam')
 
 early_stopping = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=80)
 
-model.fit(x=X_train,
-          y=y_train,
-          epochs=1000,
-          batch_size=256,
-          validation_data=(X_test, y_test),
-          callbacks=[early_stopping]
-          )
+# mdel.fit(x=X_train,
+#           y=y_train,
+#           epochs=1000,
+#           batch_size=256,
+#           validation_data=(X_test, y_test),
+#           callbacks=[early_stopping]
+#           )o
 
-model.save('full_data_project_model.h5')
-
+# model.save('full_data_project_model.h5')
+#
 # predictions = model.predict_classes(X_test)
 # predictions = (model.predict(X_test) > 0.5).astype("int32")
+
+predictions = np.argmax(model.predict(X_test), axis=1)
 
 print(classification_report(y_test, predictions))
