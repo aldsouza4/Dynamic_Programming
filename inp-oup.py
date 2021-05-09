@@ -58,8 +58,9 @@ def spacePermut(inp, oup=""):
     spacePermut(inp, op2)
 
 
-# for "ABC
-# print(spacePermut("BCDEFG", "A"))
+# for "ABCDEFG"
+# spacePermut("BCDEFG", "A")
+
 
 # Print all permutations of a string keeping the sequence but changing cases.
 
@@ -82,7 +83,7 @@ def casePermut(inp: str, oup=""):
 # Given a string S, we can transform every letter individually to be lowercase or
 # uppercase to create another string.  Return a list of all possible strings we could create.
 
-def lettrCase(inp:str, oup=""):
+def lettrCase(inp: str, oup=""):
     if inp == "":
         print(oup)
         return
@@ -116,12 +117,12 @@ def balanceBracket(open, close, oup):
     if open != 0:
         op1 = oup
         op1 += "("
-        balanceBracket(open-1, close, op1)
+        balanceBracket(open - 1, close, op1)
 
     if close > open:
         op2 = oup
         op2 += ")"
-        balanceBracket(open, close-1, op2)
+        balanceBracket(open, close - 1, op2)
 
 
 # for n = 3
@@ -138,30 +139,19 @@ def nbinary(n):
             print(oup)
             return
 
-        if ones <= zeroes:
+        if ones == zeroes:
             op1 = oup + "1"
-            prefixOne(op1, ones+1, zeroes, n-1)
+            prefixOne(op1, ones + 1, zeroes, n - 1)
 
         elif ones > zeroes:
 
             op2 = oup + "0"
             op3 = oup + "1"
 
-            prefixOne(op2, ones, zeroes+1, n-1)
-            prefixOne(op3, ones+1, zeroes, n-1)
+            prefixOne(op2, ones, zeroes + 1, n - 1)
+            prefixOne(op3, ones + 1, zeroes, n - 1)
+
+    prefixOne(op, 1, 0, n - 1)
 
 
-    prefixOne(op, 1, 0, n-1)
-
-
-# nbinary(250)
-
-
-
-
-
-
-
-
-
-
+nbinary(4)

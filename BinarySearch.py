@@ -209,7 +209,7 @@ def floorElement(arr, ele):
     return res
 
 
-print(floorElement([1, 2, 4, 8, 10, 10, 12, 19], 9))
+# print(floorElement([1, 2, 4, 8, 10, 10, 12, 19], 9))
 
 def ceilElement(arr, ele):
     start = 0
@@ -372,7 +372,7 @@ def bitonicarry(arr):
     return left == (len(arr) - right-1)
 
 
-nums = [1, 3, 5,  4, 5, 6, 3, 2 ]
+nums = [1, 3, 5, 4, 5, 6, 3, 2 ]
 # print(bitonicarry(nums))
 
 
@@ -468,7 +468,7 @@ def allocatePage(arr, key):
 ar = [12, 34, 67, 90]
 m = 2
 
-# print(allocatePage(ar, m))
+print(allocatePage(ar, m))
 
 
 

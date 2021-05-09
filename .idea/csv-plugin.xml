@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\inp-oup.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\loan.py">
           <value>
             <Attribute>

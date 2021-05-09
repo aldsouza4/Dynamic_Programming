@@ -105,6 +105,7 @@ def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
     if n == 1:
         print("Move disk 1 from rod", from_rod, "to rod", to_rod)
         return
+
     TowerOfHanoi(n - 1, from_rod, aux_rod, to_rod)
     print("Move disk", n, "from rod", from_rod, "to rod", to_rod)
     TowerOfHanoi(n - 1, aux_rod, to_rod, from_rod)
@@ -113,8 +114,8 @@ def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
 # Driver code
 n = 4
 
+TowerOfHanoi(n, 'A', 'C', 'B')
 
-# TowerOfHanoi(n, 'A', 'C', 'B')
 
 # Print all subsets of a String.
 
@@ -142,6 +143,8 @@ def josephus(n, k):
 
 # print all permutations of a string
 ans = []
+
+
 def permut(string, fixed=0):
     if fixed == len(string):
         ans.append(string)
@@ -152,8 +155,8 @@ def permut(string, fixed=0):
         permut(string, fixed + 1)
 
 
-# permut("ABCDEF")
-# print(ans)
+permut("ABCDEF")
+print(ans)
 
 
 # Given an array of non-negative integers nums, you are initially
@@ -183,13 +186,11 @@ def possible(arr, i, memo={}):
 # print(possible([2, 3, 1, 1, 4], 0))
 
 def countjump(arr, i=0, counter=0):
-
-    if i >= len(arr)-1:
+    if i >= len(arr) - 1:
         return 0
 
     for k in range(1, arr[i] + 1):
-
-        counter = max(counter, countjump(arr, i+k))
+        counter = max(counter, countjump(arr, i + k))
 
     return 1 + counter
 
@@ -208,6 +209,5 @@ def beststock(arr):
         max_profit = max(max_profit, mx)
 
     return max_profit
-
 
 # print(beststock([7, 1, 5, 3, 6, 4]))

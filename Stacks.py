@@ -161,8 +161,8 @@ def stockspan(arr):
 
 p = [100, 80, 60, 70, 60, 75, 85]
 
-
 # print(stockspan(p))
+
 
 # Find the largest rectangular area possible in a given histogram where the largest
 # rectangle can be made of a number of contiguous bars. For simplicity, assume that
@@ -228,6 +228,8 @@ def histogramArea(arr):
     sm_right = index_nsr(arr)
     sm_left = index_nsl(arr)
 
+    # print(sm_left, '\n', sm_right)
+
     mx = 0
     for i, j, k in zip(sm_right, sm_left, range(len(arr))):
         temp = arr[k] * (i - j - 1)
@@ -246,6 +248,8 @@ r = [6, 2, 5, 4, 5, 1, 6]
 def area_matrix(mat):
     mx = 0
     temp_mat = [0 for i in range(len(mat[0]))]
+
+    print(temp_mat)
 
     for i in range(len(mat)):
 
@@ -285,7 +289,8 @@ def rainTrap(arr):
 
 w = [3, 0, 0, 2, 0, 4]
 
-print(rainTrap(w))
+
+# print(rainTrap(w))
 
 
 # Design a Data Structure SpecialStack that supports all the stack operations like
