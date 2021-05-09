@@ -89,6 +89,7 @@ def stockspan(arr):
     return result_arr
 
 
+
 p = [100, 80, 60, 70, 60, 75, 85]
 # print(stockspan(p))
 
