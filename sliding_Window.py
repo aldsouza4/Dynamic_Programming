@@ -23,7 +23,6 @@ def max_sum(arr):
 
 # ar = [4, 1, 1, 1, 2, 3, 5]
 
-
 # print(max_sum(ar))
 
 
@@ -91,7 +90,7 @@ def negative_window(arr, win):
 
 
 # print(negative_window(vector, 3))
-# Given a word pat and a text txt. Return the count of the occurences of
+# Given a word pat and a text txt. Return the count of the occurrences of
 # anagrams of the word in the text.
 
 def check_anagram(large_str, check_str):
@@ -100,7 +99,7 @@ def check_anagram(large_str, check_str):
     map = {}
 
     for i in check_str:
-        if i not in map :
+        if i not in map:
             map[i] = 1
         else:
             map[i] += 1
@@ -428,6 +427,8 @@ def checkones(arr):
 
 
 s = '00011011110001100111'
+
+
 # print(checkones(s))
 
 def zeroones(arr):
@@ -457,6 +458,8 @@ def zeroones(arr):
 
         else:
             map[sum] = i
+
+    print(map)
 
     return "".join(arr[i_index:j_index])
 

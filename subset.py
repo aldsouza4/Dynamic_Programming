@@ -98,9 +98,11 @@ def small_sum(arr, target):
 
     v = t[-1]
     check = []
-    for i in range(len(v) // 2):
+    print(v)
+    for i in range(len(v) // 2 + 1):
         if v[i]:
             check.append(i)
+
     mn = float('inf')
     for i in check:
         mn = min(mn, target - 2 * i)
@@ -111,7 +113,7 @@ def small_sum(arr, target):
 array = [1, 1, 2, 3]
 sum_range = sum(array)
 
-# print(small_sum(array, sum_range))
+print(small_sum(array, sum_range))
 real_diff = 1
 
 

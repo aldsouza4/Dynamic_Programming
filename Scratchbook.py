@@ -1,109 +1,36 @@
-def ngr(arr):
-    stack = []
-    result_arr = []
+def smallest_sum(arr):
+    add = sum(arr)
 
-    i = len(arr) - 1
+    dp = [[-1 for i in range(add+1)] for i in range(len(arr)+1)]
 
-    while i != -1:
+    for i in range(len(arr)+1):
+        for j in range(add+1):
 
-        if len(stack) == 0:
-            result_arr.append(-1)
+            if j == 0:
+                dp[i][j] = True
 
-        elif stack[-1] > arr[i]:
-            result_arr.append(stack[-1])
+            elif i == 0:
+                dp[i][j] = False
 
-        elif stack[-1] < arr[i]:
-            while len(stack) > 0 and stack[-1] < arr[i]:
-                stack.pop()
+            elif arr[i-1] <= j:
+                dp[i][j] = dp[i-1][j] or dp[i-1][j-arr[i-1]]
 
-            if len(stack) == 0:
-                result_arr.append(-1)
+            elif arr[i-1] > j:
+                dp[i][j] = dp[i-1][j]
 
-            else:
-                result_arr.append(stack[-1])
+    vector = dp[-1]
+    check = []
+    for i in range(len(vector)//2+1):
+        if vector[i]:
+            check.append(i)
 
-        stack.append(arr[i])
-        i -= 1
+    mn = float('inf')
 
-    return result_arr[::-1]
+    for i in check:
+        mn = min(mn, add - i*2)
 
-
-def nsl(arr):
-    stack = []
-    result_arr = []
-
-    for i in range(len(arr)):
-
-        if len(stack) == 0:
-            result_arr.append(-1)
-
-        elif stack[-1] < arr[i]:
-            result_arr.append(stack[-1])
-
-        elif stack[-1] > arr[i]:
-
-            while stack[-1] > arr[i]:
-                stack.pop()
-
-            if len(stack) == 0:
-                result_arr.append(-1)
-
-            else:
-                result_arr.append(stack[-1])
-
-        stack.append(arr[i])
-
-    return result_arr
+    print(mn)
 
 
-# print(nsl([1, 3, 2, 4]))
-
-
-
-def stockspan(arr):
-
-    result_arr = []
-    stack = []
-
-    for i in range(len(arr)):
-
-        if len(stack) == 0:
-            result_arr.append(1)
-
-        elif arr[stack[-1]] > arr[i]:
-            result_arr.append(1)
-
-        elif arr[stack[-1]] < arr[i]:
-
-            while arr[stack[-1]] < arr[i]:
-                stack.pop()
-
-            if len(stack) == 0:
-                result_arr.append(1)
-
-            else:
-                result_arr.append(i - stack[-1])
-
-        stack.append(i)
-
-    return result_arr
-
-
-
-p = [100, 80, 60, 70, 60, 75, 85]
-# print(stockspan(p))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+smallest_sum([1, 2, 1, 3, 3])
 

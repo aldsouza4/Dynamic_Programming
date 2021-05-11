@@ -166,7 +166,6 @@ point = [[3, 3], [5, -1], [-2, 4]]
 
 def minRopes(arr):
     heap = []
-    tcost = 0
 
     for i in arr:
         heappush(heap, i)
