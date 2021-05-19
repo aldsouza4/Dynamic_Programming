@@ -5,6 +5,7 @@ class Node:
     def __init__(self, data):
         self.data = data  # Assign data
         self.next = None  # Initialize
+
     # next as null
 
 
@@ -33,7 +34,6 @@ class LinkedList:
         curr.next = self.head
         self.head = curr
 
-
     def insert_at(self, data, index):
         if index == 0:
             self.push(data)
@@ -55,14 +55,12 @@ class LinkedList:
 
         curr.next = Node(data)
 
-
-    def traverse(self):
-        current = self.head
+    def traverse(self, head):
+        current = head
 
         while current:
             print(current.data)
             current = current.next
-
 
     def deleteData(self, data):
         if self.head.data == data:
@@ -81,7 +79,6 @@ class LinkedList:
 
                 prev = curr
                 curr = curr.next
-
 
     def deleteIndex(self, index):
         if index == 0:
@@ -111,11 +108,15 @@ class LinkedList:
 
         return self.len
 
-
     def swapNode(self, x, y):
+        """
+
+        :param x:
+        :param y:
+        :return:No return, swaps the array in place itself
+        """
         if x == y:
             return
-
 
         prevy = None
         curry = None
@@ -143,7 +144,6 @@ class LinkedList:
             prev = curr
             curr = curr.next
 
-
         if currx is None or curry is None:
             print("Not Found")
             return
@@ -159,7 +159,6 @@ class LinkedList:
 
         else:
             prevy.next = currx
-
 
         temp = currx.next
         currx.next = curry.next
@@ -193,6 +192,245 @@ class LinkedList:
             cur.next = node
             return
 
+    def getmiddle(self, head):
+        """
+
+        :param head:
+        :return: returns the middle node
+        """
+        if head is None:
+            return
+
+        slow = head
+        fast = head
+
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+    def sortlists(self, a, b):
+        if a is None:
+            return b
+        if b is None:
+            return a
+
+        result = None
+
+        if a.data <= b.data:
+            result = a
+            result.next = self.sortlists(a.next, b)
+
+        elif b.data <= a.data:
+            result = b
+            result.next = self.sortlists(a, b.next)
+
+        return result
+
+    def mergeSort(self, head):
+        """
+
+        :param head:
+        :return: returns the head of the sorted list
+        """
+        if head is None or head.next is None:
+            return head
+
+        middle = self.getmiddle(head)
+        middlenext = middle.next
+
+        middle.next = None
+
+        sorted_left = self.mergeSort(head)
+        sorted_right = self.mergeSort(middlenext)
+
+        res = self.sortlists(sorted_left, sorted_right)
+
+        return res
+
+    def reverseGroups(self, head, group):
+        if head is None:
+            return
+
+        count = 0
+        current = head
+        prev = None
+        nxt = None
+
+        while current and count < group:
+            nxt = current.next
+            current.next = prev
+            prev = current
+            current = nxt
+            count += 1
+
+        if nxt is not None:
+            head.next = self.reverseGroups(nxt, group)
+
+        return prev
+
+    def detectloop(self):
+        if self.head is None:
+            return
+
+        ptr1 = self.head
+        ptr2 = self.head
+
+        while ptr1 and ptr2 and ptr2.next:
+            ptr1 = ptr1.next
+            ptr2 = ptr2.next.next
+
+            if ptr1 == ptr2:
+                self.removeloop(ptr1)
+
+                return True
+
+        return False
+
+    def removeloop(self, loopnode):
+        if self.head is None:
+            return
+
+        pointerone = self.head
+
+        while True:
+
+            pointertwo = loopnode
+            while pointertwo != pointertwo and pointertwo.next != pointerone:
+                pointertwo = pointertwo.next
+
+            if pointertwo.next == pointerone:
+                pointertwo.next = None
+                return
+
+            pointerone = pointerone.next
+
+    def rotatelist(self, k):
+        if self.head is None:
+            return
+
+        slowptr = self.head
+        fastptr = self.head
+
+        while k != 0 and fastptr:
+            fastptr = fastptr.next
+            k -= 1
+
+        while fastptr.next:
+            slowptr = slowptr.next
+            fastptr = fastptr.next
+
+        fastptr.next = self.head
+        self.head = slowptr.next
+        slowptr.next = None
+
+    def addtwonums(self, head1, head2):
+        if head1 is None:
+            return head2
+        if head2 is None:
+            return head1
+
+        prev = None
+        temp = None
+        carry = 0
+
+        while head1 is not None or head2 is not None:
+            f = 0 if head1 is None else head1.data
+            s = 0 if head2 is None else head2.data
+
+            sum = f + s + carry
+            carry = 1 if sum > 10 else 0
+            sum = sum if sum < 10 else sum % 10
+
+            temp = Node(sum)
+
+            if self.head is None:
+                self.head = temp
+
+            else:
+                prev.next = temp
+
+            prev = temp
+
+            if head1 is not None:
+                head1 = head1.next
+
+            if head2 is not None:
+                head2 = head2.next
+
+        if carry > 0:
+            temp.next = Node(carry)
+
+        return self.head
+
+
+    def isPalindrome(self, head):
+
+        def makeduplicate(head):
+            newl = LinkedList()
+
+            while head:
+                newl.insert(head.data)
+                head = head.next
+
+            return newl.head
+
+
+        def revere(head):
+            prev = None
+            current = head
+
+            while current:
+                nxt = current.next
+                current.next = prev
+                prev = current
+                current = nxt
+
+            return prev
+
+
+        dup = makeduplicate(head)
+        revhead = revere(dup)
+
+        while True:
+            if head and revhead:
+                if head.data != revhead.data:
+                    return False
+
+                head = head.next
+                revhead = revhead.next
+
+            if head is None and revhead is not None:
+                return False
+
+            if head is not None and revhead is None:
+                return False
+
+            if head is None and revhead is None:
+                return True
+
+
+if __name__ == '__main__':
+    ar = LinkedList()
+    ar.insert(1)
+    ar.insert(2)
+    ar.insert(3)
+    ar.insert(4)
+    ar.insert(5)
+    ar.insert(6)
+    ar.insert(7)
+    ar.insert(8)
+    ar.insert(9)
+
+    kr = LinkedList()
+    kr.insert(3)
+    kr.insert(1)
+    kr.insert(2)
+    kr.insert(1)
+    kr.insert(3)
+    print(kr.isPalindrome(kr.head))
+
 
 def mergeTwolists(headone: Node, headtwo: Node):
     if headone is None or headtwo is None:
@@ -211,11 +449,9 @@ def mergeTwolists(headone: Node, headtwo: Node):
             cur.next = headone
             break
 
-
-        if headone.data<headtwo.data:
+        if headone.data < headtwo.data:
             cur.next = headone
             headone = headone.next
-
 
         else:
             cur.next = headtwo
@@ -224,25 +460,3 @@ def mergeTwolists(headone: Node, headtwo: Node):
         cur = cur.next
 
     return dumNode.next
-
-
-
-
-
-if __name__ == '__main__':
-    ar = LinkedList()
-    ar.insert(1)
-    ar.insert(3)
-    ar.insert(5)
-
-    br = LinkedList()
-    br.insert(2)
-    br.insert(4)
-    br.insert(6)
-
-
-    mergeTwolists(ar.head, br.head)
-
-
-
-

@@ -114,7 +114,7 @@ def TowerOfHanoi(n, from_rod, to_rod, aux_rod):
 # Driver code
 n = 4
 
-TowerOfHanoi(n, 'A', 'C', 'B')
+# TowerOfHanoi(n, 'A', 'C', 'B')
 
 
 # Print all subsets of a String.
@@ -138,7 +138,7 @@ def josephus(n, k):
     return killmen(men, k - 1, 1)
 
 
-# print(josephus(40, 7))
+print(josephus(40, 7))
 
 
 # print all permutations of a string
@@ -155,8 +155,8 @@ def permut(string, fixed=0):
         permut(string, fixed + 1)
 
 
-permut("ABCDEF")
-print(ans)
+# permut("ABCDEF")
+# print(ans)
 
 
 # Given an array of non-negative integers nums, you are initially
