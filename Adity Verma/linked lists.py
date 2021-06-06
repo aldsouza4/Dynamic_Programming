@@ -364,7 +364,6 @@ class LinkedList:
 
         return self.head
 
-
     def isPalindrome(self, head):
 
         def makeduplicate(head):
@@ -375,7 +374,6 @@ class LinkedList:
                 head = head.next
 
             return newl.head
-
 
         def revere(head):
             prev = None
@@ -388,7 +386,6 @@ class LinkedList:
                 current = nxt
 
             return prev
-
 
         dup = makeduplicate(head)
         revhead = revere(dup)
@@ -410,6 +407,110 @@ class LinkedList:
             if head is None and revhead is None:
                 return True
 
+    def joinLinkedlist(self, head):
+        cur = self.head
+        while cur.next:
+            cur = cur.next
+
+        cur.next = head
+        return
+
+    def findCommonNode(self, head):
+        if self.head is None or head is None:
+            return
+
+        cur1 = self.head
+
+        while cur1:
+
+            cur2 = head
+
+            while cur2:
+                if cur1.data == cur2.data:
+                    return cur1.data
+
+                cur2 = cur2.next
+
+            cur1 = cur1.next
+
+        return False
+
+
+class NodeSpecial:
+
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.random = None
+
+
+# Linked List class
+class LinkedList_:
+
+    # Function to initialize the Linked
+    # List object
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        if self.head is None:
+            self.head = NodeSpecial(data)
+            return
+
+        else:
+            current = self.head
+
+            while current.next:
+                current = current.next
+
+            current.next = NodeSpecial(data)
+            return
+
+    def makeclone(self):
+        if self.head is None:
+            return
+
+        curr = self.head
+
+        while curr:
+            nxt = curr.next
+            temp = NodeSpecial(curr.data)
+            curr.next = temp
+            temp.next = nxt
+            curr = nxt
+
+        curr = self.head
+        while curr is not None:
+            if curr.random is not None:
+                curr.next.random = curr.random.next
+            curr = curr.next.next
+
+        curr = self.head
+        dum_root = curr.next
+
+        while curr.next:
+            temp = curr.next
+            curr.next = curr.next.next
+            curr = temp
+
+        return dum_root
+
+
+    def traverse(self, head):
+        current = head
+
+        while current:
+            print(current.data)
+            current = current.next
+
+
+t = LinkedList_()
+t.insert(1)
+t.insert(2)
+t.insert(3)
+t.insert(4)
+k = t.makeclone()
+t.traverse(k)
 
 if __name__ == '__main__':
     ar = LinkedList()
@@ -421,15 +522,6 @@ if __name__ == '__main__':
     ar.insert(6)
     ar.insert(7)
     ar.insert(8)
-    ar.insert(9)
-
-    kr = LinkedList()
-    kr.insert(3)
-    kr.insert(1)
-    kr.insert(2)
-    kr.insert(1)
-    kr.insert(3)
-    print(kr.isPalindrome(kr.head))
 
 
 def mergeTwolists(headone: Node, headtwo: Node):

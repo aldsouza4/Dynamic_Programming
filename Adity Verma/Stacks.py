@@ -330,14 +330,24 @@ class Stack():
                 return self.stack.pop()
 
 
-t = Stack()
+# reverse a string using stacks
 
-t.push(8)
-t.push(4)
-t.push(5)
-t.push(6)
-t.push(3)
+def reversestring(string):
+    if string is None:
+        return None
 
-# print(t.min_ele)
-# t.pop()
-# print(t.min_ele)
+    string = list(string)
+    stack = []
+
+    for i in range(len(string)):
+        stack.append(string[i])
+
+    string = []
+
+    while stack:
+        string.append(stack.pop())
+
+    return string
+
+
+# print(reversestring("allwin"))

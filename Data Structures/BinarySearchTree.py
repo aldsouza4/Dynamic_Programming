@@ -1,4 +1,4 @@
-# implementation for binary search tree
+    # implementation for binary search tree
 
 class Node:
     def __init__(self, data, parent):
@@ -7,10 +7,9 @@ class Node:
         self.rightChild = None
         self.leftChild = None
 
-
 class BinarySearchTree:
     def __init__(self):
-        self.root = None
+        self.root= None
 
     def insert(self, data):
         if self.root is None:
@@ -46,7 +45,7 @@ class BinarySearchTree:
     def getmax(self):
         if self.root is None:
             return
-        node = self.root
+        node= self.root
         while node.rightChild:
             node = node.rightChild
         return node.data
@@ -166,72 +165,7 @@ class BinarySearchTree:
 
 
 
-    # Diameter of Tree Given a binary tree, you need to compute the length of the diameter of the tree.
-    # The diameter of a binary tree is the length of the longest path between any two nodes in a tree.
-    # This path may or may not pass through the root.
 
-    def diameter(self):
-        self.result = 0
-
-        def get_diameter(node: Node):
-            if node is None:
-                return 0
-
-            res_l = get_diameter(node.leftChild)
-            res_r = get_diameter(node.rightChild)
-
-            temp = 1 + max(res_l, res_r)
-            ans = max(temp, 1 + res_l + res_r)
-            self.result = max(ans, self.result)
-
-            return temp
-
-        get_diameter(self.root)
-        return self.result
-
-    # For this problem, a path is defined as any sequence of nodes from some starting node to
-    # any node in the tree along the parent-child connections. The path must contain at least one
-    # node and does not need to go through the root.
-
-    def max_sum_path(self):
-        self.result = -float('inf')
-
-        def maxpath(node:Node):
-            if node is None:
-                return 0
-
-            left = maxpath(node.leftChild)
-            right = maxpath(node.rightChild)
-
-            temp = max(max(left, right)+node.data, node.data)
-            ans = max(left+right+node.data, temp)
-            self.result = max(ans, self.result)
-            return temp
-
-
-        maxpath(self.root)
-        return self.result
-
-    # For this problem, a path is defined as any sequence of nodes from some starting leaf node to
-    # any leaf node in the tree along the parent-child connections. The path must contain at least one
-    # node and does not need to go through the root.
-
-    def max_sum_path_leaf(self):
-        self.result = -float('inf')
-
-        def maxpath_leaf(node: Node):
-            if node is None:
-                return 0
-
-            left = maxpath_leaf(node.leftChild)
-            right = maxpath_leaf(node.rightChild)
-
-            temp = max(left, right) + node.data
-            ans = max(temp, left+right+node.data)
-            self.result = max(self.result, ans)
-
-        maxpath_leaf(self.root)
-        return self.result
 
 
 if __name__ == '__main__':
@@ -239,5 +173,11 @@ if __name__ == '__main__':
     bst.insert(10)
     bst.insert(15)
     bst.insert(28)
-    print(bst.max_sum_path_leaf())
-
+    bst.insert(5)
+    bst.insert(20)
+    bst.remove(10)
+    bst.traverse()
+    # bst.traverse()
+    # print(bst.get_min())
+    # print(bst.getmin())
+    # print(bst.getmax())
