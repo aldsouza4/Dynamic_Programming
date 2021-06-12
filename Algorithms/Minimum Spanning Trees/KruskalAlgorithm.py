@@ -1,3 +1,6 @@
+# O(E log V)
+# V -> Vertices
+# E -> Edges
 
 class Vertex:
 
@@ -39,6 +42,12 @@ class DisjointSet:
         self.root_nodes = []
         # let's create as many disjoint sets as the number of vertices in the G(V,E)
         self.make_sets()
+
+    def make_sets(self):
+        for v in self.vertex_list:
+            node = Node(0, len(self.root_nodes))
+            v.node = node
+            self.root_nodes.append(node)
 
     # the aim of the find() function is to find the root node which is the representative
     # of that given disjoint set
@@ -85,12 +94,6 @@ class DisjointSet:
             root2.parent = root1
             root1.rank = root1.rank + 1
 
-    def make_sets(self):
-        for v in self.vertex_list:
-            node = Node(0, len(self.root_nodes))
-            v.node = node
-            self.root_nodes.append(node)
-
 
 class KruskalAlgorithm:
 
@@ -125,7 +128,6 @@ class KruskalAlgorithm:
 
 
 if __name__ == '__main__':
-
     # vertices in the G(V,E)
     vertex1 = Vertex("A")
     vertex2 = Vertex("B")

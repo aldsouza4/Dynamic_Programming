@@ -1,3 +1,5 @@
+# Time complexity O(n*Log n)
+
 def mergeSort(arr):
     if len(arr) == 1:
         return

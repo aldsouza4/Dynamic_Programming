@@ -1,4 +1,4 @@
-
+# Time Complexity O(N^2)
 class BubbleSort:
 
     def __init__(self, nums):

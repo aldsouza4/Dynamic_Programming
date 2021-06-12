@@ -1,47 +1,70 @@
 from DP_Trees import Node, BinarySearchTree
 root = Node(6)
-
-t = BinarySearchTree()
-t.root = root
-
 root.right = Node(5)
 root.right.right =Node(4)
 root.left = Node(3)
 root.left.left = Node(2)
 root.left.right = Node(5)
-root.right.left = Node(4)
-root.right.left.right = Node(4)
+root.left.right.left = Node(7)
+root.left.right.right = Node(4)
 
-# root = Node(1)
-# root.right = Node(2)
-# root.right.right = Node(8)
+# root2 = Node(5)
+# root2.left = Node(3)
+# root2.left.right = Node(4)
+# root2.left.left = Node(2)
+# root2.right = Node(7)
+# root2.right.left = Node(6)
+# root2.right.right = Node(8)
+#
+#
+# root1 = Node(10)
+# root1.left = Node(10)
+# root1.left.right = Node(8)
+# root1.left.left = Node(3)
+# root1.right = Node(15)
+# root1.right.left = Node(11)
+# root1.right.right = Node(18)
+
+
+# root = Node(2)
+# root.right = Node(5)
+# root.right.right = Node(1)
+# root.left = Node(7)
+# root.left.right = Node(9)
+# root.left.right.left = Node(11)
+# root.left.right.right = Node(4)
+
+# root = Node(2)
 # root.left = Node(3)
-# root.left.left = Node(4)
-# root.left.left.left = Node(4)
+# root.right = Node(4)
 
-def checkcomplete(root: Node):
+global k
+k = 3
+def findkthele(root: Node):
+    global k
+
     if root is None:
-        return True
+        return
 
-    if not root.left and root.right:
-        return False
+    left = findkthele(root.left)
 
-    if not root.right and root.left:
-        return False
+    if left is not None:
+        return left
 
-    if not root.left and not root.right:
-        return True
+    k -= 1
 
-    left = checkcomplete(root.left)
-    right = checkcomplete(root.right)
+    if k == 0:
+        return root.data
 
-    if left is False or right is False:
-        return False
-
-    return True
+    return findkthele(root.right)
 
 
-t.traverse_in_order(t.root)
+print(findkthele(root))
+
+
+
+
+
 
 
 

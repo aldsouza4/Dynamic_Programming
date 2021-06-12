@@ -1,4 +1,7 @@
 import heapq
+# O ( V + E log V )
+# V -> Vertices
+# E -> Edges
 
 
 class Edge:
