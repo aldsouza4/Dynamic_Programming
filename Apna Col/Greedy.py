@@ -137,3 +137,26 @@ def cowstruck(fuel_stops: list, total_distance: int, initial_fuel: int):
     return stops
 
 # print(cowstruck([[4, 4], [5, 2], [11, 5], [15, 10]], 25, 10))
+
+# max and min diff in array
+
+
+def maxmin(array: list):
+    if array is None:
+        return
+
+    n = len(array)
+
+    array.sort()
+
+    mn = 0
+    mx = 0
+
+    for i in range(n//2):
+        mx += (array[i + n//2] - array[i])
+        mn += (array[2 * i + 1] - array[2*i])
+
+    return mn, mx
+
+
+# print(maxmin([12, -3, 10, 0]))
