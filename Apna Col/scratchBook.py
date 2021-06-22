@@ -26,6 +26,16 @@ root.right.left = Node(6)
 root.right.right = Node(7)
 
 
+def distancek(root: Node, k):
+    if root is None:
+        return
+
+    if k == 0:
+        print(root.data)
+        return
+
+    distancek(root.left, k-1)
+    distancek(root.right, k-1)
 
 
 

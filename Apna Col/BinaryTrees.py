@@ -379,3 +379,42 @@ def distancek(root: Node, k):
 
     distancek(root.left, k-1)
     distancek(root.right, k-1)
+
+
+# Prints all nodes at distnace from given key/target
+def alldistnacek(root: Node, key, k):
+    if root is None:
+        return -1
+
+    if key == root.data:
+        distancek(root, k)
+        return 0
+
+    dl = alldistnacek(root.left, key, k)
+
+    if dl != -1:
+
+        if dl + 1 == k:
+            print(root.data)
+
+        else:
+            distancek(root.right, k-dl-2)
+
+        return dl + 1
+
+    dr = alldistnacek(root.right, key, k)
+
+    if dr != -1:
+
+        if dr + 1 == k:
+            print(root.data)
+
+        else:
+            distancek(root.left, k - dr - 2)
+
+        return dr + 1
+
+    return -1
+
+
+alldistnacek(root, 3, 2)
