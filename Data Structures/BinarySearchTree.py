@@ -1,4 +1,4 @@
-    # implementation for binary search tree
+# implementation for binary search tree
 
 class Node:
     def __init__(self, data, parent):
@@ -7,9 +7,10 @@ class Node:
         self.rightChild = None
         self.leftChild = None
 
+
 class BinarySearchTree:
     def __init__(self):
-        self.root= None
+        self.root = None
 
     def insert(self, data):
         if self.root is None:
@@ -45,7 +46,7 @@ class BinarySearchTree:
     def getmax(self):
         if self.root is None:
             return
-        node= self.root
+        node = self.root
         while node.rightChild:
             node = node.rightChild
         return node.data
@@ -162,10 +163,6 @@ class BinarySearchTree:
             return self.get_predessor(node.rightChild)
 
         return node
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+#
+
 
 class Graph:
 
@@ -15,10 +17,10 @@ class Graph:
         stack[node] = True
 
         for neighbour in self.graph[node]:
-            if visited[neighbour] == False:
+            if not visited[neighbour]:
                 if self.iscyclicutil(neighbour, visited, stack):
                     return True
-            elif stack[neighbour] == True:
+            elif stack[neighbour]:
                 return True
 
         stack[node] = False
