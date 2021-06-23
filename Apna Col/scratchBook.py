@@ -1,41 +1,52 @@
-from collections import deque
-
-
 class Node:
-    def __init__(self, data):
-        self.data = data
+
+    # Constructor to create a new node
+    def __init__(self, key):
+        self.key = key
         self.left = None
         self.right = None
 
 
-def traverse(node: Node):
+# A utility function to do inorder traversal of BST
+def inorder(root):
+    if root is not None:
+        inorder(root.left)
+        print(root.key)
+        inorder(root.right)
+
+
+# A utility function to insert a
+# new node with given key in BST
+def insert(node: Node, key):
+    # If the tree is empty, return a new node
     if node is None:
-        return
-    traverse(node.left)
-    print(node.data)
-    traverse(node.right)
-    return
+        return Node(key)
+
+    # Otherwise recur down the tree
+    if key < node.key:
+        node.left = insert(node.left, key)
+    else:
+        node.right = insert(node.right, key)
+
+    # return the (unchanged) node pointer
+    return node
 
 
-root = Node(1)
-root.left = Node(2)
-root.left.left = Node(4)
-root.left.right = Node(5)
-root.right = Node(3)
-root.right.left = Node(6)
-root.right.right = Node(7)
+# Driver code
+""" Let us create following BST
+		   50
+		 /	  \
+		30	  70
+		/ \   / \
+	   20 40 60 80 """
 
-
-def distancek(root: Node, k):
-    if root is None:
-        return
-
-    if k == 0:
-        print(root.data)
-        return
-
-    distancek(root.left, k-1)
-    distancek(root.right, k-1)
+head = Node(50)
+insert(head, 30)
+insert(head, 20)
+insert(head, 40)
+insert(head, 70)
+insert(head, 60)
+insert(head, 80)
 
 
 

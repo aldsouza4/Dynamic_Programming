@@ -16,13 +16,13 @@ def traverse(node: Node):
     return
 
 
-# root = Node(1)
-# root.left = Node(2)
-# root.left.left = Node(4)
-# root.left.right = Node(5)
-# root.right = Node(3)
-# root.right.left = Node(6)
-# root.right.right = Node(7)
+root = Node(1)
+root.left = Node(2)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right = Node(3)
+root.right.left = Node(6)
+root.right.right = Node(7)
 
 
 # Construct Tree from given Inorder and Preorder traversals
@@ -417,4 +417,42 @@ def alldistnacek(root: Node, key, k):
     return -1
 
 
-alldistnacek(root, 3, 2)
+# alldistnacek(root, 2, 1)
+
+
+# Returns the minimum distance between two nodes in a Tree (Requires get path function).
+def getcomancestor(root: Node, n1, n2):
+    if root is None:
+        return
+
+    path1 = []
+    path2 = []
+
+    getpath(root, n1, path1)
+    getpath(root, n2, path2)
+
+    i = 0
+    while True:
+        if path1[i] != path2[i]:
+            break
+        i += 1
+
+    return len(path1[i:]) + len(path2[i:])
+
+
+# print(getcomancestor(root, 4, 3))
+
+
+# Replace every node in the tree with sum of left and sum of right chilren
+def sumreplacement(root: Node):
+    if root is None:
+        return 0
+
+    left = sumreplacement(root.left)
+    right = sumreplacement(root.right)
+
+    root.data = root.data + left + right
+    return root.data
+
+
+sumreplacement(root)

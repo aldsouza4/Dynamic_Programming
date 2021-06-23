@@ -98,6 +98,7 @@ class BinarySearchTree:
         elif data < node.data:
             self.remove_Node(data, node.leftChild)
         else:
+            # case 1
             if node.leftChild is None and node.rightChild is None:
                 print("Removing a leaf Node")
 
@@ -113,6 +114,7 @@ class BinarySearchTree:
 
                 del node
 
+            # case 2
             elif node.leftChild is None and node.rightChild is not None:
                 print("Removing a node with a single right child")
 
@@ -131,6 +133,7 @@ class BinarySearchTree:
 
                 del node
 
+            # case 3
             elif node.rightChild is None and node.leftChild is not None:
                 print("Removing a node with a single left child")
 
@@ -147,6 +150,7 @@ class BinarySearchTree:
                 node.leftChild.parent = parent
                 del node
 
+            # case 4
             else:
                 print("Removing a node with two children ")
 
