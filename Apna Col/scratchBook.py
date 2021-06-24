@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
 
     # Constructor to create a new node
@@ -13,6 +16,13 @@ def inorder(root):
         inorder(root.left)
         print(root.key)
         inorder(root.right)
+
+
+def preorder(root):
+    if root is not None:
+        print(root.key)
+        preorder(root.left)
+        preorder(root.right)
 
 
 # A utility function to insert a
@@ -32,6 +42,17 @@ def insert(node: Node, key):
     return node
 
 
+
+h = Node(6)
+h.left = Node(9)
+h.right = Node(3)
+h.right.right = Node(13)
+h.left.left = Node(1)
+h.left.right = Node(4)
+
+restoreBST(h)
+inorder(h)
+
 # Driver code
 """ Let us create following BST
 		   50
@@ -48,5 +69,18 @@ insert(head, 70)
 insert(head, 60)
 insert(head, 80)
 
-
-
+# var = 3
+#
+#
+# def gothca():
+#     global var
+#     var += 6
+#
+#
+# def hat():
+#     gothca()
+#
+#     print(var)
+#
+#
+# hat()

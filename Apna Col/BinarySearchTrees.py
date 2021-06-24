@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
 
     # Constructor to create a new node
@@ -133,6 +136,11 @@ def constructBST(preorder, key, min, max, n):
     return root
 
 
+# preoreder = [5, 4, 2, 3, 8, 6, 9]
+# preindex = 0
+# root = constructBST(preoreder, preoreder[0], -float('inf'), float('inf'), len(preoreder))
+# inorder(root)
+
 # Check if a given binary tree is a binary search tree or not
 def checkBST(root: Node, min, max):
     if root is None:
@@ -152,10 +160,212 @@ def checkBST(root: Node, min, max):
 # print(checkBST(head, -float('inf'), float('inf')))
 
 
-preoreder = [5, 4, 2, 3, 8, 6, 9]
-preindex = 0
-# root = constructBST(preoreder, preoreder[0], -float('inf'), float('inf'), len(preoreder))
-# inorder(root)
+# Build a balanced binary search tree using a sorted array
+def buildbst(arr, start, end):
+    if start > end:
+        return
+
+    mid = (start + end)//2
+
+    root = Node(arr[mid])
+
+    root.left = buildbst(arr, start, mid-1)
+    root.right = buildbst(arr, mid + 1, end)
+
+    return root
+
+
+# root = buildbst([1, 2, 3, 4, 5, 6, 7], 0, 6)
+# preorder(root)
+
+
+# Print nth catalan number
+def catalan(n):
+    global memo
+    if n in memo:
+        return memo[n]
+
+    if n <= 1:
+        return 1
+
+    res = 0
+    for i in range(n):
+        temp = catalan(i)
+        memo[i] = temp
+
+        temp = catalan(n - i - 1)
+        memo[n - i - 1] = temp
+
+        res += memo[i] * memo[n - i - 1]
+
+    memo[n] = res
+    return memo[n]
+
+
+# Function to return the count of unique BSTs with n keys
+def uniqueBSTs(n):
+    n1, n2, sum = 0, 0, 0
+
+    # Base cases
+    if n == 1 or n == 0:
+        return 1
+
+    # Find the nth Catalan number
+    for i in range(1, n + 1):
+        # Recursive calls
+        n1 = uniqueBSTs(i - 1)
+        n2 = uniqueBSTs(n - i)
+        sum += n1 * n2
+
+    # Return the nth Catalan number
+    return sum
+
+
+# Prints the level order in a zigzag way
+def zigzagtraversal(root: Node):
+    if root is None:
+        return
+
+    queue = deque([root])
+    left = True
+    ans = []
+    while queue:
+
+        count = len(queue)
+        oparr = []
+        while count:
+            curr = queue.popleft()
+
+            if curr.left:
+                queue.append(curr.left)
+
+            if curr.right:
+                queue.append(curr.right)
+
+            oparr.append(curr.key)
+            count -= 1
+
+        if left:
+            ans += oparr
+        else:
+            ans += oparr[::-1]
+
+        left = not left
+
+    return ans
+
+
+# print(zigzagtraversal(head))
+
+
+# Check if two binary trees are identical or not
+def identicalBST(root1: Node, root2: Node):
+    if root1 is None and root2 is None:
+        return True
+
+    if root1 is None or root2 is None:
+        return False
+
+    left = identicalBST(root1.left, root2.left)
+    right = identicalBST(root1.right, root2.right)
+
+    if root1.key == root2.key:
+        return left and right
+
+    return False
+
+
+# To find the largest binary search tree in a binary tree
+class Info:
+    def __init__(self):
+        self.size = None
+        self.max = None
+        self.min = None
+        self.ans = None
+        self.isBST = None
+
+
+def largestBSTinBT(root: Node):
+    if root is None:
+        temp = Info()
+        temp.size = 0
+        temp.max = -float('inf')
+        temp.min = float('inf')
+        temp.ans = 0
+        temp.isBST = True
+        return temp
+
+    if root.left is None and root.right is None:
+        temp = Info()
+        temp.size = 1
+        temp.max = root.key
+        temp.min = root.key
+        temp.ans = 1
+        temp.isBST = True
+        return temp
+
+    leftInfo = largestBSTinBT(root.left)
+    rightInfo = largestBSTinBT(root.right)
+
+    curr = Info()
+    curr.size = 1 + leftInfo.size + leftInfo.size
+
+    if leftInfo.isBST and rightInfo.isBST and leftInfo.max < root.key < rightInfo.min:
+        curr.min = min(leftInfo.min, rightInfo.min, root.key)
+        curr.max = max(rightInfo.max, leftInfo.max, root.key)
+
+        curr.ans = curr.size
+        curr.isBST = True
+
+        return curr
+
+    else:
+        curr.ans = max(leftInfo.ans, rightInfo.ans)
+        curr.isBST = False
+        return curr
+    # returns an Info class object (.ans for final ans)
+
+
+# Recover binary tree
+def calcpointers(root):
+    global first, mid, last, prev
+    if root is None:
+        return
+
+    calcpointers(root.left)
+
+    if prev and root.key < prev.key:
+        if not first:
+            first = prev
+            mid = root
+
+        else:
+            last = root
+
+    prev = root
+
+    calcpointers(root.right)
+
+
+def swap(node1, node2):
+    node1.key, node2.key = node2.key, node1.key
+
+
+first = None
+mid = None
+last = None
+prev = None
+
+
+def restoreBST(root: Node):
+    global first, mid, last, prev
+    calcpointers(root)
+    if first and last:
+        swap(first, last)
+
+    else:
+        swap(first.key, mid.key)
+
 
 # Driver code
 """ 
