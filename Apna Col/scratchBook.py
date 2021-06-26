@@ -1,86 +1,113 @@
-from collections import deque
-
-
 class Node:
-
-    # Constructor to create a new node
-    def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
-# A utility function to do inorder traversal of BST
-def inorder(root):
-    if root is not None:
-        inorder(root.left)
-        print(root.key)
-        inorder(root.right)
+def insertTail(root: Node, data):
+    if root is None or root.data is None:
+        return Node(data)
+
+    current = root
+
+    while current.next:
+        current = current.next
+
+    current.next = Node(data)
 
 
-def preorder(root):
-    if root is not None:
-        print(root.key)
-        preorder(root.left)
-        preorder(root.right)
+def get_length(root: Node):
+    if root is None:
+        return 0
+
+    count = 0
+    current = root
+    while current:
+        current = current.next
+        count += 1
+
+    return count
 
 
-# A utility function to insert a
-# new node with given key in BST
-def insert(node: Node, key):
-    # If the tree is empty, return a new node
-    if node is None:
-        return Node(key)
+def traverse(root: Node):
+    if root is None or root.data is None:
+        return
 
-    # Otherwise recur down the tree
-    if key < node.key:
-        node.left = insert(node.left, key)
-    else:
-        node.right = insert(node.right, key)
+    current = root
 
-    # return the (unchanged) node pointer
-    return node
+    while current:
+        print(current.data, end=" ")
+        current = current.next
 
 
+# Using O(N) Extra space
+def mergepoint(root1: Node, root2: Node):
+    if not root1 or not root2:
+        return
 
-h = Node(6)
-h.left = Node(9)
-h.right = Node(3)
-h.right.right = Node(13)
-h.left.left = Node(1)
-h.left.right = Node(4)
+    map = set()
 
-restoreBST(h)
-inorder(h)
+    current = root1
 
-# Driver code
-""" Let us create following BST
-		   50
-		 /	  \
-		30	  70
-		/ \   / \
-	   20 40 60 80 """
+    while current:
+        map.add(current)
+        current = current.next
 
-head = Node(50)
-insert(head, 30)
-insert(head, 20)
-insert(head, 40)
-insert(head, 70)
-insert(head, 60)
-insert(head, 80)
+    current = root2
+    while current:
+        if current in map:
+            return current.data
 
-# var = 3
-#
-#
-# def gothca():
-#     global var
-#     var += 6
-#
-#
-# def hat():
-#     gothca()
-#
-#     print(var)
-#
-#
-# hat()
+        current = current.next
+
+    print("No merge point")
+    return
+
+
+# print(mergepoint(root, root2))
+
+
+root = Node(1)
+root.next = Node(2)
+root.next.next = Node(3)
+root.next.next.next = Node(4)
+root.next.next.next.next = Node(5)
+root.next.next.next.next.next = Node(6)
+root.next.next.next.next.next.next = Node(7)
+root.next.next.next.next.next.next.next = Node(8)
+root.next.next.next.next.next.next.next.next = Node(9)
+root.next.next.next.next.next.next.next.next.next = Node(10)
+root.next.next.next.next.next.next.next.next.next.next = Node(11)
+
+
+# collect all odd position nodes first and then the even position nodes
+def oddEven(root: Node):
+    if root is None:
+        return
+
+    odd = root
+    even = root.next
+
+    evenFirst = even
+
+    while True:
+        if odd is None or even is None or even.next is None:
+            odd.next = evenFirst
+            break
+
+        odd.next = even.next
+        odd = odd.next
+
+        if odd.next is None:
+            even.next = None
+            odd.next = evenFirst
+            break
+
+        even.next = odd.next
+        even = even.next
+
+    return root
+
+
+root = oddEven(root)
+traverse(root)
