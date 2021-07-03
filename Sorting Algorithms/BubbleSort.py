@@ -8,7 +8,7 @@ class BubbleSort:
 
         for i in range(len(self.nums)-1):
             for j in range(len(self.nums)-i-1):
-                if self.nums[j] < self.nums[j+1]:
+                if self.nums[j] > self.nums[j+1]:
                     self.swap(j, j+1)
 
     def swap(self, i, j):

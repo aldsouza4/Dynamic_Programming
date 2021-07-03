@@ -212,3 +212,26 @@ def beststock(arr):
     return max_profit
 
 # print(beststock([7, 1, 5, 3, 6, 4]))
+
+# Print in combinations
+
+
+def printCombination(arr, n, r):
+    data = [0] * r
+    combinationUtil(arr, data, 0, n - 1, 0, r)
+
+
+def combinationUtil(arr, data, start, end, index, r):
+    global ans
+    if index == r:
+        print(data)
+        return
+
+    i = start
+    while i <= end and end - i + 1 >= r - index:
+        data[index] = arr[i]
+        combinationUtil(arr, data, i + 1, end, index + 1, r)
+        i += 1
+
+
+printCombination([6, 4, 9, 7, 8], 5, 3)
