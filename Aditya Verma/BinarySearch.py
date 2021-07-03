@@ -1,5 +1,5 @@
 def binarySearch(arr, element, start, end):
-    if end >=start:
+    if end >= start:
         mid = (start + end) // 2
 
         if arr[mid] == element:
@@ -77,13 +77,13 @@ def findOccurances(arr, ele):
 
             if arr[mid] == element:
                 res_l = mid
-                end = mid-1
+                end = mid - 1
 
             elif arr[mid] < element:
-                start = mid+1
+                start = mid + 1
 
             else:
-                end = mid -1
+                end = mid - 1
 
         return res_l
 
@@ -96,16 +96,15 @@ def findOccurances(arr, ele):
 
             if arr[mid] == element:
                 res_r = mid
-                start = mid+1
+                start = mid + 1
 
             elif arr[mid] < element:
-                start = mid+1
+                start = mid + 1
 
             else:
-                end = mid -1
+                end = mid - 1
 
         return res_r
-
 
     return binarySearch_right(arr, ele, start, end) - binarySearch_left(arr, ele, start, end) + 1
 
@@ -122,33 +121,36 @@ def findRotations(arr):
     end = n - 1
 
     while start <= end:
-        mid = (start+end)//2
-        prev = (mid + n -1)%n
-        nxt = (mid + 1)%n
+        mid = (start + end) // 2
+        prev = (mid + n - 1) % n
+        nxt = (mid + 1) % n
 
         if arr[prev] > arr[mid] and arr[nxt] > arr[mid]:
             return mid
 
+        # we keep trying to looks in the direction which is not correct
+        # ( not following end > mid or start < mid)
         elif arr[mid] <= arr[end]:
             end = mid - 1
 
         elif arr[start] <= arr[mid]:
-            start = mid+1
+            start = mid + 1
 
     return -1
 
 
 ar = [15, 18, 2, 3, 6, 12]
+
+
 # print(findRotations(ar))
 
 
 # FIND AN ELEMENT IN A ROTATED SORTED ARRAY:
 
 def findinRotated(arr, ele):
-
     ind = findRotations(arr)
 
-    return max(binarySearch(arr, ele, 0, ind-1), binarySearch(arr, ele, ind, len(arr)-1))
+    return max(binarySearch(arr, ele, 0, ind - 1), binarySearch(arr, ele, ind, len(arr) - 1))
 
 
 # print(findinRotated(ar, 3))
@@ -158,7 +160,6 @@ def findinRotated(arr, ele):
 # an element in this array. Basically the element arr[i] can only be swapped with either arr[i+1] or arr[i-1].
 
 def nearlySortedsearch(arr, element, start, end):
-
     while end >= start:
 
         mid = (start + end) // 2
@@ -166,14 +167,14 @@ def nearlySortedsearch(arr, element, start, end):
         if arr[mid] == element:
             return mid
 
-        elif (mid-1)>=start and arr[mid-1] == element:
-            return mid-1
+        elif (mid - 1) >= start and arr[mid - 1] == element:
+            return mid - 1
 
-        elif (mid+1)>=start and arr[mid+1] == element:
-            return mid+1
+        elif (mid + 1) >= start and arr[mid + 1] == element:
+            return mid + 1
 
         elif arr[mid] < element:
-            start = mid+2
+            start = mid + 2
 
         else:
             end = mid - 2
@@ -190,21 +191,20 @@ def nearlySortedsearch(arr, element, start, end):
 
 
 def floorElement(arr, ele):
-
     start = 0
-    end = len(arr)-1
+    end = len(arr) - 1
     res = None
 
-    while start<=end:
+    while start <= end:
 
-        mid = (start+end)//2
+        mid = (start + end) // 2
 
         if arr[mid] <= ele:
             res = arr[mid]
             start = mid + 1
 
         elif arr[mid] > ele:
-            end = mid-1
+            end = mid - 1
 
     return res
 
@@ -213,12 +213,12 @@ def floorElement(arr, ele):
 
 def ceilElement(arr, ele):
     start = 0
-    end = len(arr)-1
+    end = len(arr) - 1
     res = None
 
-    while start<=end:
+    while start <= end:
 
-        mid = (start+end)//2
+        mid = (start + end) // 2
 
         if arr[mid] >= ele:
             res = arr[mid]
@@ -232,6 +232,7 @@ def ceilElement(arr, ele):
 
 arr = [1, 2, 8, 10, 10, 12, 19]
 
+
 # print(ceilElement(arr, 10))
 
 
@@ -241,17 +242,17 @@ arr = [1, 2, 8, 10, 10, 12, 19]
 
 def alphaCeil(arr, alph):
     start = 0
-    end = len(arr)-1
+    end = len(arr) - 1
 
     res = None
 
-    while start<=end:
+    while start <= end:
 
-        mid = (start+end)//2
+        mid = (start + end) // 2
 
         if arr[mid] > alph:
             res = arr[mid]
-            end = mid-1
+            end = mid - 1
 
         else:
             start = mid + 1
@@ -260,22 +261,26 @@ def alphaCeil(arr, alph):
 
 
 aplhabets = ['a', 'c', 'f', 'h']
+
+
 # print(alphaCeil(aplhabets, 'c'))
 
 # find an element in an infinite array
 
 def infiniteSearch(arr, ele):
     start = 0
-    end  = 1
+    end = 1
 
     while ele > arr[end]:
         start = end
         end = end * 2
 
-    return binarySearch(arr, ele, start, end-1)
+    return binarySearch(arr, ele, start, end - 1)
 
 
 arr = [1, 2, 8, 10, 10, 12, 19]
+
+
 # print(infiniteSearch(arr, 10))
 
 
@@ -287,24 +292,25 @@ def find1inBinary(arr):
     start = 0
     end = 1
 
-    while 1>arr[end]:
+    while 1 > arr[end]:
         start = end
         end = end + end
 
-    while start<=end:
+    while start <= end:
 
-        mid = (start+end)//2
+        mid = (start + end) // 2
 
-        if arr[mid]>0 and arr[mid+1] == 1:
+        if arr[mid] > 0 and arr[mid + 1] == 1:
             return mid
 
-        elif arr[mid] == arr[mid-1] == 1:
+        elif arr[mid] == arr[mid - 1] == 1:
             end = mid - 1
 
         elif arr[mid] == 0:
             start = mid + 1
 
     return -1
+
 
 # print(find1inBinary([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1]))
 
@@ -316,10 +322,11 @@ def minDiff(arr, ele):
     bottom = floorElement(arr, ele)
     top = ceilElement(arr, ele)
 
-    if abs(bottom-ele) > abs(top-ele):
+    if abs(bottom - ele) > abs(top - ele):
         return top
     else:
         return bottom
+
 
 # print(minDiff([1, 3, 8, 10, 13, 15], 12))
 
@@ -328,51 +335,55 @@ def minDiff(arr, ele):
 
 def findPeak(arr):
     low = 0
-    high = len(arr)-1
+    high = len(arr) - 1
 
-    while low<=high:
+    while low <= high:
 
-        mid = (high+low)//2
+        mid = (high + low) // 2
 
-        if mid>0 and mid <len(arr)-1:
+        if mid > 0 and mid < len(arr) - 1:
 
-            if arr[mid] > arr[mid-1] and arr[mid] > arr[mid+1]:
+            if arr[mid] > arr[mid - 1] and arr[mid] > arr[mid + 1]:
                 return mid
 
-            elif arr[mid - 1]> arr[mid]:
-                high = mid-1
+            elif arr[mid - 1] > arr[mid]:
+                high = mid - 1
 
             else:
-                low = mid+1
+                low = mid + 1
 
-        elif mid==0:
+        elif mid == 0:
             if arr[0] > arr[1]:
                 return 0
             else:
                 return 1
 
-        elif mid == len(arr)-1:
-            if arr[len(arr)-1] > arr[len(arr)-2]:
-                return len(arr)-1
+        elif mid == len(arr) - 1:
+            if arr[len(arr) - 1] > arr[len(arr) - 2]:
+                return len(arr) - 1
             else:
-                return len(arr)-2
+                return len(arr) - 2
         else:
             return -1
 
 
 # nums = [1,2,3,1]
-nums = [1, 3, 4, 5, 6, 3, 2 ]
+nums = [1, 3, 4, 5, 6, 3, 2]
+
+
 # # print(findPeak(nums))
 
 
 def bitonicarry(arr):
     left = findPeak(arr)
-    right  = findPeak(arr[::-1])
+    right = findPeak(arr[::-1])
 
-    return left == (len(arr) - right-1)
+    return left == (len(arr) - right - 1)
 
 
-nums = [1, 3, 5, 4, 5, 6, 3, 2 ]
+nums = [1, 3, 5, 4, 5, 6, 3, 2]
+
+
 # print(bitonicarry(nums))
 
 
@@ -381,27 +392,27 @@ nums = [1, 3, 5, 4, 5, 6, 3, 2 ]
 # is first strictly increasing then after a point strictly decreasing.
 
 def findinBiotonic(arr, ele):
-
     peak = findPeak(arr)
     left = binarySearch(arr, ele, 0, peak)
-    right = binarySearch(arr, ele, peak, len(arr)-1)
+    right = binarySearch(arr, ele, peak, len(arr) - 1)
 
     return max(left, right)
 
 
 ar = [-3, 9, 8, 20, 17, 5, 1]
-# print(findinBiotonic(ar, 20))
 
+
+# print(findinBiotonic(ar, 20))
 
 
 def searchMat(arr, ele):
     n = len(mat)
     m = len(mat[0])
 
-    i =0
+    i = 0
     j = len(mat[0]) - 1
 
-    while i>=0 and i<n and j>=0 and j<m:
+    while i >= 0 and i < n and j >= 0 and j < m:
         if arr[i][j] == ele:
             return (i, j)
 
@@ -414,10 +425,12 @@ def searchMat(arr, ele):
     return -1
 
 
-mat =  [[10, 20, 30, 40],
-        [15, 25, 35, 45],
-        [27, 29, 37, 45],
-        [32, 33, 39, 50]]
+mat = [[10, 20, 30, 40],
+       [15, 25, 35, 45],
+       [27, 29, 37, 45],
+       [32, 33, 39, 50]]
+
+
 # print(searchMat(mat, 29))
 
 
@@ -431,62 +444,40 @@ def isvalid(arr, n, pages, key):
     sum = 0
     for i in arr:
         sum += i
-        if sum>pages:
-            students+=1
+        if sum > pages:
+            students += 1
             sum = i
 
-    if students>key:
+    if students > key:
         return False
 
     return True
 
+
 def allocatePage(arr, key):
-    n =len(arr)
+    n = len(arr)
     start = max(arr)
     end = sum(arr)
     result = -1
-    temp_arr = list(range(start, end+1))
+    temp_arr = list(range(start, end + 1))
 
-    if n<key:
+    if n < key:
         return -1
 
-    while start<=end:
-        mid = (start+end)//2
+    while start <= end:
+        mid = (start + end) // 2
 
         if isvalid(arr, n, mid, key):
             result = mid
-            end = mid-1
+            end = mid - 1
 
         else:
-            start = mid+1
+            start = mid + 1
 
     return result
-
-
 
 
 ar = [12, 34, 67, 90]
 m = 2
 
-print(allocatePage(ar, m))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# print(allocatePage(ar, m))

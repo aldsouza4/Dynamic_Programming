@@ -124,18 +124,19 @@ n = 4
 # so that you are the last one remaining and so survive.
 
 def josephus(n, k):
-    men = list(range(1, n + 1))
+    circle = list(range(1, n + 1))
 
-    def killmen(arr: list, k, start):
-        if len(arr) == 1:
-            return arr[0]
+    def josephusUtil(circle, k, start=0):
+        if len(circle) == 1:
+            return circle[0]
 
-        siz = len(arr)
-        i = (start + k - 1) % siz
-        arr.remove(arr[i])
-        return killmen(arr, k, i + 1)
+        kill = (start + k - 1) % len(circle)
+        circle.pop(kill)
+        start = kill % len(circle)
 
-    return killmen(men, k - 1, 1)
+        return josephusUtil(circle, k, start)
+
+    return josephusUtil(circle, k)
 
 
 print(josephus(40, 7))

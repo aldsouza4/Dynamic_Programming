@@ -1,13 +1,7 @@
-from collections import defaultdict
+import pandas as pd
+import yfinance as yf
 
-class Solution:
-    def isPossible(self, N, prerequisites):
-        self.dependencyEdges = defaultdict(list)
+rain = yf.Ticker("RAIN.NS")
 
-        for x, y in prerequisites:
-            self.dependencyEdges[x].append(y)
-
-        self.canFinish = [False] * (N+1)
-
-        for v in range(1, N + 1):
-            res =
+hist = rain.earnings
+print(hist)
