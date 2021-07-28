@@ -5,8 +5,6 @@ class Graph:
         self.graph = [[0 for column in range(V)]
                       for row in range(V)]
 
-        self.colorArr = [-1 for i in range(self.V)]
-
     # This function returns true if graph G[V][V]
     # is Bipartite, else false
     def isBipartiteUtil(self, src):
@@ -25,34 +23,29 @@ class Graph:
         # Create a queue (FIFO) of vertex numbers and
         # enqueue source vertex for BFS traversal
         queue = [src]
+        self.colorArr[src] = 1
 
         # Run while there are vertices in queue
         # (Similar to BFS)
         while queue:
 
-            u = queue.pop()
+            u = queue.pop(0)
 
             # Return false if there is a self-loop
-            if self.graph[u][u] == 1:
-                return False
+            # if self.graph[u][u] == 1:
+            #     return False
 
-            for v in range(self.V):
+            for v in self.graph[u]:
 
                 # An edge from u to v exists and
                 # destination v is not colored
-                if (self.graph[u][v] == 1 and
-                        self.colorArr[v] == -1):
-
-                    # Assign alternate color to
-                    # this adjacent v of u
-                    self.colorArr[v] = 1 - self.colorArr[u]
+                if self.colorArr[v] == -1:
+                    self.colorArr[v] = (1 - self.colorArr[u])
                     queue.append(v)
 
-                # An edge from u to v exists and destination
-                # v is colored with same color as u
-                elif (self.graph[u][v] == 1 and
-                      self.colorArr[v] == self.colorArr[u]):
-                    return False
+                else:
+                    if self.colorArr[v] == self.colorArr[u]:
+                        return False
 
         # If we reach here, then all adjacent
         # vertices can be colored with alternate
@@ -61,6 +54,7 @@ class Graph:
 
     def isBipartite(self):
         self.colorArr = [-1 for i in range(self.V)]
+
         for i in range(self.V):
             if self.colorArr[i] == -1:
                 if not self.isBipartiteUtil(i):
@@ -69,10 +63,6 @@ class Graph:
 
 
 g = Graph(4)
-g.graph = [[0, 1, 0, 1],
-           [1, 0, 1, 0],
-           [0, 1, 0, 1],
-           [1, 0, 1, 0]]
+g.graph = [[1, 3], [0, 2], [1, 3], [0, 2]]
 
 print("Yes" if g.isBipartite() else "No")
-

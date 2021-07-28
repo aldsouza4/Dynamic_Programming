@@ -39,7 +39,8 @@ def prefixeval(arr: str):
         if len(arr) == 0:
             return stack[0]
 
-# print(prefixeval(str))
+
+print(prefixeval(str))
 
 # building a stack using Queue
 

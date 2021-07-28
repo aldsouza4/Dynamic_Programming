@@ -395,6 +395,8 @@ def maxwindowstr(arr, checkarr):
     return "".join(arr[i_index:j_index + 1])
 
 
+# print(maxwindowstr('timetopractice', 'toc'))
+
 # print(maxwindowstr("ADOBECODEBANC", "AEOBC"))
 
 def isvalid(arr):

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
+<<<<<<< HEAD
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.9 (newEnv)" jdkType="Python SDK" />
+=======
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/lightenv" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.9 (lightenv)" jdkType="Python SDK" />
+>>>>>>> 26cab8faf3de320380c0d5c0f4528dbf12caf02c
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
