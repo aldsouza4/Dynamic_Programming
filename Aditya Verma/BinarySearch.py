@@ -368,15 +368,12 @@ def findPeak(arr):
 
 
 # nums = [1,2,3,1]
-<<<<<<< HEAD
 nums = [1, 3, 4, 5, 6, 3, 2]
 
 
 # # print(findPeak(nums))
-=======
 nums = [1, 3, 4, 5, 6, 3, 2 ]
 print(findPeak(nums))
->>>>>>> b105dbcdfca187649135648ecb32c381d4920419
 
 
 def bitonicarry(arr):

@@ -297,7 +297,7 @@ class LinkedList:
         while True:
 
             pointertwo = loopnode
-            while pointertwo != pointertwo and pointertwo.next != pointerone:
+            while pointertwo != pointerone and pointertwo.next != pointerone:
                 pointertwo = pointertwo.next
 
             if pointertwo.next == pointerone:
@@ -494,7 +494,6 @@ class LinkedList_:
             curr = temp
 
         return dum_root
-
 
     def traverse(self, head):
         current = head
