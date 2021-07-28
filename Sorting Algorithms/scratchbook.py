@@ -31,6 +31,7 @@ class Graph:
 
         print(stack[::-1])
 
+
 g = Graph(6)
 g.addEdge(5, 2)
 g.addEdge(5, 0)

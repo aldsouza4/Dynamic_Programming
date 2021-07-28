@@ -1,4 +1,3 @@
-
 def selection_sort(nums):
 
     # we make N-1 iterations

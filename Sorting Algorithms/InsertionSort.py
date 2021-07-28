@@ -1,4 +1,3 @@
-
 def insertion_sort(nums):
 
     for i in range(len(nums)):

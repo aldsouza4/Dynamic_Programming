@@ -161,6 +161,7 @@ def stockspan(arr):
 
 p = [100, 80, 60, 70, 60, 75, 85]
 
+
 # print(stockspan(p))
 
 
@@ -240,8 +241,8 @@ def histogramArea(arr):
 
 r = [6, 2, 5, 4, 5, 1, 6]
 
-
 # print(histogramArea(r))
+
 
 # Given a binary matrix, find the maximum size rectangle binary-sub-matrix with all 1’s.
 
@@ -348,6 +349,5 @@ def reversestring(string):
         string.append(stack.pop())
 
     return string
-
 
 # print(reversestring("allwin"))

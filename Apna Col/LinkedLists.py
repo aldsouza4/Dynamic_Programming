@@ -1,6 +1,6 @@
 class Node:
     def __init__(self, data):
-        self.data= data
+        self.data = data
         self.next = None
 
 
@@ -81,7 +81,6 @@ def delete(root: Node, data):
         temp = root.next
         del root
         return temp
-
 
     current = root
 
@@ -248,7 +247,6 @@ def findmergepoint(root1: Node, root2: Node):
             current2 = current2.next
             i2 -= 1
 
-
     while current1 and current2:
         if current1 == current2:
             return current1
@@ -257,7 +255,6 @@ def findmergepoint(root1: Node, root2: Node):
         current2 = current2.next
 
     return
-
 
 
 # merge two sorted linked lists in a sorted manner
@@ -310,7 +307,6 @@ def oddEven(root: Node):
         even = even.next
 
     return root
-
 
 # root = oddEven(root)
 # traverse(root)
