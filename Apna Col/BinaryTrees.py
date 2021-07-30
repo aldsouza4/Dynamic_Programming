@@ -7,6 +7,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 def traverse(node: Node):
     if node is None:
         return
@@ -24,10 +25,11 @@ root.right = Node(3)
 root.right.left = Node(6)
 root.right.right = Node(7)
 
-
 # Construct Tree from given Inorder and Preorder traversals
 
 preIndex = 0
+
+
 def search(inorder, start, end, val):
     for i in range(start, end + 1):
         if inorder[i] == val:
@@ -55,6 +57,8 @@ def buildTree(inOrder, preorder, instart, inend):
 
 
 poIndex = 0
+
+
 # Build Tree Postorder and Inorder
 def Build_IN_POST(inorder, postorder):
     global poIndex
@@ -137,6 +141,8 @@ def height(root: Node):
 
 
 ans = 0
+
+
 def diameter(root: Node):
     global ans
 
@@ -156,6 +162,8 @@ def diameter(root: Node):
 
 
 max_level = 0
+
+
 # Print leftView of a Tree
 def leftview(root: Node, curr_level=0):
     global max_level
@@ -225,7 +233,6 @@ def isBalanced(root):
         return max(lh, rh) + 1
 
 
-
 # Traverse a Tree level by level
 def travlevel(node: Node):
     if node is None:
@@ -236,7 +243,6 @@ def travlevel(node: Node):
     while queue:
 
         count = len(queue)
-
 
         while count:
             curr = queue.popleft()
@@ -283,6 +289,8 @@ def sumatk(node: Node, k: int):
 
 # Print path from root to key
 path = []
+
+
 def getpath(root: Node, key: int, path: list):
     if root is None:
         return False
@@ -297,6 +305,8 @@ def getpath(root: Node, key: int, path: list):
 
     path.pop()
     return False
+
+
 #   Ans is stored in path
 
 # getpath(root, 7, path)
@@ -314,14 +324,14 @@ def lowestansesotor(root: Node, v1: int, v2: int):
     if not getpath(root, v1, path1) or not getpath(root, v2, path2):
         return False
 
-
     index = 0
     while index < min(len(path1), len(path2)):
         if path1[index] != path2[index]:
             break
         index += 1
 
-    return path1[index-1]
+    return path1[index - 1]
+
 
 # print(lowestansesotor(root, 7, 6))
 
@@ -344,14 +354,19 @@ def leastancestor(root: Node, n1, n2):
 
     if rightlca is not None:
         return rightlca
+
+
 #     Returns common ancestor node... so we have to return node.data
 
 # print(leastancestor(root, 7, 6).data)
 
 # Get the path with highest sum
 result = -float('inf')
+
+
 def max_sum_path(self):
     global result
+
     def maxpath(node: Node):
         global result
         if node is None:
@@ -368,6 +383,7 @@ def max_sum_path(self):
     maxpath(root)
     return result
 
+
 # Print Nodes at distance kfrom thr root node
 def distancek(root: Node, k):
     if root is None:
@@ -377,8 +393,8 @@ def distancek(root: Node, k):
         print(root.data)
         return
 
-    distancek(root.left, k-1)
-    distancek(root.right, k-1)
+    distancek(root.left, k - 1)
+    distancek(root.right, k - 1)
 
 
 # Prints all nodes at distnace from given key/target
@@ -398,7 +414,7 @@ def alldistnacek(root: Node, key, k):
             print(root.data)
 
         else:
-            distancek(root.right, k-dl-2)
+            distancek(root.right, k - dl - 2)
 
         return dl + 1
 
@@ -460,42 +476,37 @@ def sumreplacement(root: Node):
 
 # Print vaerical order of teh tree
 
-map = dict()
 
 
+def verticalTraversal(root):
+    res = []
+    dictionary = dict()
 
-
-def shoverticalview(root: Node):
-    global map
-    if root is None:
-        return
-
-    def verticalView(node: Node, hdis):
-        global map
-        if node is None:
+    def function(root, vertical, horizontal):
+        if not root:
             return
 
-        try:
-            map[hdis].append(node.data)
-        except:
-            map[hdis] = [node.data]
-        verticalView(node.left, hdis - 1)
-        verticalView(node.right, hdis + 1)
+        if vertical in dictionary:
+            dictionary[vertical].append((horizontal, root.data))
+        else:
+            dictionary[vertical] = [(horizontal, root.data)]
+        function(root.left, vertical - 1, horizontal + 1)
+        function(root.right, vertical + 1, horizontal + 1)
 
-    verticalView(root, 0)
+    function(root, 0, 0)
+    # structure of dictionary = {index:[(level, value)]}
+    # print(dictionary)
+    for i in sorted(dictionary.keys()):  # Sorting the keys(indices):
+        temp = [j[1] for j in sorted(dictionary[i])]  # Sorting in case of a tie
+        res.append(temp)
 
-    for i in sorted(map.keys()):
-        print(map[i])
+    return res
 
-#
-# root = Node(1)
-# root.left = Node(2)
-# root.left.left = Node(4)
-# root.left.right = Node(5)
-# root.right = Node(3)
-# root.right.left = Node(6)
-# root.right.right = Node(7)
-
-
-# shoverticalview(root)
+root = Node(1)
+root.left = Node(2)
+root.left.left = Node(4)
+root.left.right = Node(6)
+root.right = Node(3)
+root.right.left = Node(5)
+root.right.right = Node(7)
 
