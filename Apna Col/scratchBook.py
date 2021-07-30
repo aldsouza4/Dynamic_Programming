@@ -3,58 +3,61 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
+        self.nextRight = None
 
 
 def traverse(root: Node):
     if root is None:
         return
 
-    traverse(root.left)
     print(root.data)
+    traverse(root.left)
     traverse(root.right)
 
 
-root = Node(1)
-root.left = Node(2)
-root.left.left = Node(4)
-root.left.right = Node(5)
-root.right = Node(3)
-root.right.left = Node(6)
+# root = Node(22)
+# root.left = Node(9)
+# root.left.left = Node(4)
+# root.left.right = Node(5)
+# root.right = Node(13)
+# root.right.left = Node(6)
+# root.right.right = Node(7)
+
+
+root = Node(62)
+root.left = Node(16)
+root.right = Node(15)
+root.left.right = Node(8)
+root.left.right.right = Node(8)
+root.right.left = Node(4)
 root.right.right = Node(7)
+root.right.left.left = Node(4)
 
 
 class Solution:
-    def verticalTraversal(self, root):
-        res = []
-        dictionary = dict()
+    def __init__(self):
+        self.condition = True
 
-        def function(root, vertical=0, horizontal=0):
-            if not root:
-                return
+    def isSumTree(self, root: Node):
+        self.SumTree(root)
+        return self.condition
 
-            if vertical in dictionary:
-                dictionary[vertical].append((horizontal, root.data))
-            else:
-                dictionary[vertical] = [(horizontal, root.data)]
+    def SumTree(self, root: Node):
+        if root is None:
+            return 0
+        k = root.data
 
-            function(root.left, vertical - 1, horizontal + 1)
-            function(root.right, vertical + 1, horizontal + 1)
+        if root.left is None and root.right is None:
+            return root.data
 
-        function(root)
+        left = self.SumTree(root.left)
+        right = self.SumTree(root.right)
 
-        # structure of dictionary = {index:[(level, value)]}
+        if left + right != root.data:
+            self.condition = False
 
-        for i in sorted(dictionary.keys()):  # Sorting the keys(indices)
-            temp = [j[1] for j in sorted(dictionary[i])]  # Sorting in case of a tie
-            res.append(temp)
-        
-        ans = []
-        for i in res:
-            for j in i:
-                ans.append(j)
-
-        return res
+        return left + right + root.data
 
 
-x = Solution
-print(x.verticalTraversal(x, root))
+x = Solution()
+# print(x.isSumTree(root))

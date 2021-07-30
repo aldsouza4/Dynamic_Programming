@@ -335,6 +335,15 @@ def lowestansesotor(root: Node, v1: int, v2: int):
 
 # print(lowestansesotor(root, 7, 6))
 
+root = Node(1)
+root.left = Node(2)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right = Node(3)
+root.right.left = Node(6)
+root.right.right = Node(7)
+
+
 # Lowest common ancestor between two nodes (Single Pass)
 def leastancestor(root: Node, n1, n2):
     if root is None:
@@ -358,7 +367,7 @@ def leastancestor(root: Node, n1, n2):
 
 #     Returns common ancestor node... so we have to return node.data
 
-# print(leastancestor(root, 7, 6).data)
+print(leastancestor(root, 4, 5).data)
 
 # Get the path with highest sum
 result = -float('inf')
@@ -477,7 +486,6 @@ def sumreplacement(root: Node):
 # Print vaerical order of teh tree
 
 
-
 def verticalTraversal(root):
     res = []
     dictionary = dict()
@@ -502,6 +510,7 @@ def verticalTraversal(root):
 
     return res
 
+
 root = Node(1)
 root.left = Node(2)
 root.left.left = Node(4)
@@ -509,4 +518,3 @@ root.left.right = Node(6)
 root.right = Node(3)
 root.right.left = Node(5)
 root.right.right = Node(7)
-

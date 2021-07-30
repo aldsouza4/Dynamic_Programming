@@ -146,7 +146,6 @@ def checkBST(root: Node, min, max):
     if root is None:
         return True
 
-
     left = checkBST(root.left, min, root.key)
     right = checkBST(root.right, root.key, max)
 
@@ -165,11 +164,11 @@ def buildbst(arr, start, end):
     if start > end:
         return
 
-    mid = (start + end)//2
+    mid = (start + end) // 2
 
     root = Node(arr[mid])
 
-    root.left = buildbst(arr, start, mid-1)
+    root.left = buildbst(arr, start, mid - 1)
     root.right = buildbst(arr, mid + 1, end)
 
     return root
