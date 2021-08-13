@@ -93,6 +93,9 @@ def substring(str1, str2, m, n):
         for k in i:
             mx = max(mx, k)
 
+    for i in t:
+        print(i)
+
     return mx
 
 
@@ -178,11 +181,12 @@ def minDelInsetion(str1, str2, m, n):
     return dels + ins
 
 
-str1 = "geeksforgeeks"
-str2 = "geeks"
+str1 = "sunday"
+str2 = "saturday"
 
 
 # print(minDelInsetion(str1, str2, len(str1), len(str2)))
+
 
 # Longest Palindromic Subsequence
 # Given a sequence, find the length of the longest palindromic subsequence in it.
@@ -273,8 +277,8 @@ def supersequence_print(str1, str2):
 B = "HELLO"
 A = "GEEK"
 
-
 # print(supersequence_print(A, B))
+
 
 # Given a string, print the longest repeating subsequence such that the two
 # subsequence don’t have same string character at same position, i.e., any i’th
@@ -301,8 +305,6 @@ def nonrepeting(str):
                                   t[i][j - 1])
 
         res = ''
-        # for i in t:
-        #     print(i)
         # Traverse dp[][] from bottom right
         i = n
         j = n
@@ -321,6 +323,7 @@ def nonrepeting(str):
             # that gave us maximum result.
             elif t[i][j] == t[i - 1][j]:
                 i -= 1
+
             else:
                 j -= 1
 
@@ -333,7 +336,7 @@ def nonrepeting(str):
     return modifiedlcs(str, str, n, n)
 
 
-# print(nonrepeting("AABEBCDD"))
+print(nonrepeting("AABEBCDD"))
 
 
 # Sequence Pattern Matching

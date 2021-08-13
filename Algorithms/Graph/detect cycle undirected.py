@@ -72,9 +72,9 @@ class Graph:
 
 # Create a graph given in the above diagram
 g = Graph(5)
-g.addEdge(1, 0)
 g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(0, 3)
-g.addEdge(3, 4)
+g.addEdge(2, 4)
+g.addEdge(2, 3)
+# g.addEdge(0, 3)
+# g.addEdge(3, 4)
 print(g.isCyclic())

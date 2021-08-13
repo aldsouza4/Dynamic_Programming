@@ -98,7 +98,7 @@ def small_sum(arr, target):
 
     v = t[-1]
     check = []
-    # print(v)
+
     for i in range(len(v) // 2 + 1):
         if v[i]:
             check.append(i)
@@ -107,18 +107,18 @@ def small_sum(arr, target):
     for i in check:
         mn = min(mn, target - 2 * i)
 
-    return mn
+    return abs(mn)
 
 
-array = [1, 1, 2, 3]
+array = [3, 1, 4, 2, 2, 1]
 sum_range = sum(array)
 
+
 # print(small_sum(array, sum_range))
-real_diff = 1
 
 
 # Count the number of subset with a given difference
-def count_subset_diff(arr, target, n):
+def count_subset_diff(arr, target, n, real_diff):
     t = [[0 for i in range(target + 1)] for i in range(n + 1)]
 
     for i in range(n + 1):
@@ -143,4 +143,4 @@ def count_subset_diff(arr, target, n):
             print(v[i])
 
 
-count_subset_diff(array, sum_range, 4)
+count_subset_diff(array, sum_range, 4, 1)

@@ -162,8 +162,7 @@ def min_coinchange(arr, target):
 
 lo = [25, 10, 5]
 V = 30
-# print(min_coinchange(lo, V))
-
+print(min_coinchange(lo, V))
 
 # fractional knapsac
 
@@ -200,6 +199,31 @@ def fracknapsack(val_arry, wt_arry, weight):
     return mx_weight
 
 
+def fractionalknapsack(W, Items, n):
+    shop = []
+
+    # for i in range(n):
+    #     shop.append([Items[i].value, Items[i].weight, Items[i].value/Items[i].weight])
+
+    for i in range(n):
+        shop.append([Items[0][i], Items[1][i], Items[0][i] / Items[1][i]])
+
+    shop.sort(key=lambda a: a[2], reverse=True)
+
+    sack = 0
+    i = 0
+
+    while i < n:
+        if shop[i][1] <= W:
+            sack += shop[i][0]
+            W -= shop[i][1]
+        else:
+            break
+        i += 1
+
+    sack += (W * shop[i][0] / shop[i][1])
+
+
 # print(fracknapsack(val, wt, capacity))
 
 def twoSum(arr, target, n=4):
@@ -215,5 +239,4 @@ def twoSum(arr, target, n=4):
 
     return False
 
-
-print(twoSum([3, 5, 6, 8, 2, 3], 10))
+# print(twoSum([3, 5, 6, 8, 2, 3], 10))
