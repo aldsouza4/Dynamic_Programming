@@ -511,6 +511,15 @@ def verticalTraversal(root):
     return res
 
 
+class Info:
+    def __init__(self, min=-float('inf'), max=float('inf'), ans=0, size=0, isBst=False):
+        self.min = min
+        self.max = max
+        self.ans = ans
+        self.size = size
+        self.isBst = isBst
+
+
 # To check for the larget binary searh Tree in a Binary Tree
 def bstinbt(root: Node):
     if root is None:
@@ -536,7 +545,6 @@ def bstinbt(root: Node):
         curr.isBst = False
 
     return curr
-
 
 
 root = Node(1)
