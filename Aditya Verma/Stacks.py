@@ -253,7 +253,6 @@ def area_matrix(mat):
     print(temp_mat)
 
     for i in range(len(mat)):
-
         for j in range(len(mat[0])):
             if mat[i][j] == 0:
                 temp_mat[j] = 0

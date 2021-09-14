@@ -61,7 +61,7 @@ def dunnoOredrsearch(arr, ele):
 
 # print(dunnoOredrsearch(x, 4))
 
-x = [1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 8, 9, 10]
+x = [1, 2, 3, 4, 4, 4, 5, 6, 7, 8, 9, 10]
 
 
 def findOccurances(arr, ele):
@@ -341,7 +341,7 @@ def findPeak(arr):
 
         mid = (high + low) // 2
 
-        if mid > 0 and mid < len(arr) - 1:
+        if 0 < mid < len(arr) - 1:
 
             if arr[mid] > arr[mid - 1] and arr[mid] > arr[mid + 1]:
                 return mid
@@ -370,10 +370,7 @@ def findPeak(arr):
 # nums = [1,2,3,1]
 nums = [1, 3, 4, 5, 6, 3, 2]
 
-
-# # print(findPeak(nums))
-nums = [1, 3, 4, 5, 6, 3, 2 ]
-print(findPeak(nums))
+# print(findPeak(nums))
 
 
 def bitonicarry(arr):
@@ -397,7 +394,7 @@ nums = [1, 3, 5, 4, 5, 6, 3, 2]
 def findinBiotonic(arr, ele):
     peak = findPeak(arr)
     left = binarySearch(arr, ele, 0, peak)
-    right = binarySearch(arr, ele, peak, len(arr) - 1)
+    right = revbinarySearch(arr, ele, peak, len(arr) - 1)
 
     return max(left, right)
 
@@ -405,7 +402,7 @@ def findinBiotonic(arr, ele):
 ar = [-3, 9, 8, 20, 17, 5, 1]
 
 
-# print(findinBiotonic(ar, 20))
+# print(findinBiotonic(ar, 5))
 
 
 def searchMat(arr, ele):
@@ -415,7 +412,7 @@ def searchMat(arr, ele):
     i = 0
     j = len(mat[0]) - 1
 
-    while i >= 0 and i < n and j >= 0 and j < m:
+    while 0 <= i < n and j >= 0 and j < m:
         if arr[i][j] == ele:
             return (i, j)
 

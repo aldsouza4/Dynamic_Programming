@@ -27,7 +27,6 @@ a = [1, 0, 5, 2]
 
 
 # sort(a)
-# print(a)
 
 # Delete Middle Element of a Stack Using Recursion.
 def mid_del(arr: list):
@@ -139,7 +138,7 @@ def josephus(n, k):
     return josephusUtil(circle, k)
 
 
-print(josephus(40, 7))
+# print(josephus(40, 7))
 
 
 # print all permutations of a string
@@ -234,4 +233,37 @@ def combinationUtil(arr, data, start, end, index, r):
         i += 1
 
 
-printCombination([6, 4, 9, 7, 8], 5, 3)
+# printCombination([6, 4, 9, 7, 8], 5, 3)
+
+
+import math
+
+
+def find(new_mach_price, mach_tokens, full_house):
+    curr_rate = 2
+    time = 0
+    current_tokens = 0
+
+    while current_tokens < full_house:
+        if math.ceil((full_house - current_tokens) / curr_rate) < \
+                (math.ceil(new_mach_price / curr_rate) + math.ceil((full_house - current_tokens) / (curr_rate + mach_tokens))):
+
+            time += math.ceil((full_house - current_tokens) / curr_rate)
+            return time
+
+        else:
+            prev_time = time
+            time += math.ceil(new_mach_price / curr_rate)
+            current_tokens += (time - prev_time) * curr_rate - new_mach_price
+            curr_rate = curr_rate + mach_tokens
+
+            print(current_tokens, time,  math.ceil(new_mach_price/curr_rate), curr_rate, 'i')
+
+    return time
+
+
+X = 500
+Y = 4
+Z = 2000
+
+# print(find(X, Y, Z))

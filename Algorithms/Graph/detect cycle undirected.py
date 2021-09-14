@@ -43,7 +43,7 @@ class Graph:
             # visited and not parent
             # of current vertex,
             # then there is a cycle
-            elif parent != i:
+            elif visited[i] and parent != i:
                 return True
 
         return False

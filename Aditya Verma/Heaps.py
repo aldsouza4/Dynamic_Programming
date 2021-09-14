@@ -128,12 +128,12 @@ def frequencySort(arr):
     heap = []
 
     for i in map:
-        heappush(heap, [-1 * map[i], i])
+        heappush(heap, [1 * map[i], i])
 
     for j in heap:
         while j[0] != 0:
             final_array.append(j[1])
-            j[0] += 1
+            j[0] -= 1
 
     return final_array
 

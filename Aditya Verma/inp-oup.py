@@ -154,4 +154,4 @@ def nbinary(n):
     prefixOne(op, 1, 0, n - 1)
 
 
-nbinary(4)
+# nbinary(4)

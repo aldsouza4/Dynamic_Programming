@@ -56,7 +56,8 @@ class PrimsJarnikAlgorithm:
             # it may happen that we would visited the vertex we have already considered
             if min_edge.target_vertex in self.unvisited_list:
                 self.mst.append(min_edge)
-                print("Edge added to spanning tree: %s - %s" % (min_edge.start_vertex.name, min_edge.target_vertex.name))
+                print("Edge added to spanning tree: %s - %s" % (min_edge.start_vertex.name,
+                                                                min_edge.target_vertex.name))
                 self.total_cost += min_edge.weight
                 actual_vertex = min_edge.target_vertex
                 self.unvisited_list.remove(actual_vertex)

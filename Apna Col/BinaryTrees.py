@@ -511,6 +511,34 @@ def verticalTraversal(root):
     return res
 
 
+# To check for the larget binary searh Tree in a Binary Tree
+def bstinbt(root: Node):
+    if root is None:
+        return Info()
+
+    if root.left is None and root.right is None:
+        return Info(root.data, root.data, 1, 1, True)
+
+    leftbst = bstinbt(root.left)
+    rightbst = bstinbt(root.right)
+
+    curr = Info()
+    curr.size = leftbst.size + rightbst.size + 1
+
+    if leftbst.isBst and rightbst.isBst and rightbst.min > root.data > leftbst.max:
+        curr.min = min(rightbst.min, leftbst.min, root.data)
+        curr.max = max(rightbst.min, leftbst.min, root.data)
+        curr.ans = curr.size
+        curr.isBst = True
+
+    else:
+        curr.ans = max(leftbst.ans, rightbst.ans)
+        curr.isBst = False
+
+    return curr
+
+
+
 root = Node(1)
 root.left = Node(2)
 root.left.left = Node(4)

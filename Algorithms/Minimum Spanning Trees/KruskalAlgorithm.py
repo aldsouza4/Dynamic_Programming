@@ -155,5 +155,5 @@ if __name__ == '__main__':
     edges = [edge1, edge2, edge3, edge4, edge5, edge6, edge7, edge8, edge9, edge10, edge11]
 
     # let's run the algorithm
-    algorithm = KruskalAlgorithm(vertices, edges)
-    algorithm.find_mst()
+    # algorithm = KruskalAlgorithm(vertices, edges)
+    # algorithm.find_mst()

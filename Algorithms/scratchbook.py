@@ -1,25 +1,28 @@
-ar = [50, 3, 10, 7, 40, 80]
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 
-def longestincsubseq(arr):
-    if arr is None:
+def traverse(head: Node):
+    if head is None:
         return
 
-    n = len(arr)
+    print(head.data)
+    traverse(head.next)
 
-    dp = [0] * n
-    dp[0] = 1
 
-    for i in range(1, n):
-        dp[i] = 1
+s = Node(1)
+s.next = Node(2)
+s.next.next = Node(3)
+s.next.next.next = Node(4)
+s.next.next.next.next = Node(5)
 
-        for j in range(i-1, -1, -1):
-            if arr[j] > arr[i]:
-                continue
-            possible_ans = dp[j] + 1
-            if possible_ans > dp[i]:
-                dp[i] = possible_ans
+k = Node(2)
+k.next = Node(4)
+k.next.next = Node(5)
+k.next.next.next = Node(7)
+k.next.next.next.next = Node(9)
 
-    return dp
 
-print(longestincsubseq(ar))
+

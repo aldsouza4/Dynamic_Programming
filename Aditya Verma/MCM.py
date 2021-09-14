@@ -176,4 +176,4 @@ eggs = 2
 floor = 4
 
 # t = [[-1 for i in range(floor + 1)] for i in range(eggs + 1)]
-print(eggBreak(2, 20))
+# print(eggBreak(2, 20))

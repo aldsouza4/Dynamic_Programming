@@ -141,30 +141,35 @@ def check_anagram(large_str, check_str):
 # Given an array arr[] of size N and an integer K. Find the maximum for
 # each and every contiguous subarray of size K.
 
-def maxWindow(arr, win):
-    i = 0
-    j = 0
-    list_max = []
-    ele_max = -1 * float('inf')
+def max_of_subarrays(arr, n, k):
+    if k == 1:
+        return arr
 
-    while j < len(arr):
+    if k > n:
+        return max(arr)
 
-        if arr[j] > ele_max:
-            ele_max = arr[j]
+    i, j = 0, 0
+    ans = []
+    quque = []
 
-        if j - i + 1 < win:
-            j += 1
+    while j < n:
 
-        elif j - i + 1 == win:
+        if j - i < k:
+            while quque and quque[-1] < arr[j]:
+                quque.pop()
+            quque.append(arr[j])
 
-            list_max.append(ele_max)
-            if j < len(arr) - 1 and arr[j + 1] > ele_max:
-                ele_max = arr[j + 1]
+        if j - i + 1 == k:
+            ans.append(quque[0])
+
+            if quque[0] == arr[i]:
+                quque.pop(0)
 
             i += 1
-            j += 1
 
-    return list_max
+        j += 1
+
+    return ans
 
 
 # print(maxWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))
@@ -206,9 +211,10 @@ def maxSizesum(arr, k):
     j = 0
 
     mx = 0
+    temp = 0
 
     while j < len(arr):
-        temp = sum(arr[i:j])
+        temp += arr[j]
 
         if temp == k:
             mx = max(mx, len(arr[i:j]))
@@ -428,7 +434,8 @@ def checkones(arr):
     return "".join(arr[i_index:j_index + 1])
 
 
-s = '00011011110001100111'
+# s = '00011011110001100111'
+s = "1110011"
 
 
 # print(checkones(s))
@@ -461,9 +468,9 @@ def zeroones(arr):
         else:
             map[sum] = i
 
-    print(map)
+    # print(map)
 
     return "".join(arr[i_index:j_index])
 
 
-# print(zeroones(s))
+print(zeroones(s))

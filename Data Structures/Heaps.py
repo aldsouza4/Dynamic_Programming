@@ -31,7 +31,7 @@ class Heap:
         parent_index = (index-1)//2
 
         # we consider all the items above till we hit the root node
-        # if heap property if violated then we swap the parent-child
+        # if heap property is violated then we swap the parent-child
         if index > 0 and self.heap[index] > self.heap[parent_index]:
             self.heap[index], self.heap[parent_index] = self.heap[parent_index], self.heap[index]
             self.fix_up(parent_index)

@@ -85,8 +85,8 @@ class Solution:
             return 0
 
         if self.check(length[n - 1], width[n - 1], base_length, base_width):
-            return max(height[n - 1] + self.maxheight(height, width, length, len(height), length[n - 1], width[n - 1]),
-                       self.maxheight(height, width, length, n - 1, base_length, base_width))
+            return max(height[n - 1] + self.maxheight(height, width, length, n, length[n - 1], width[n - 1]),
+                       self.maxheight(height, width, length, n - 1, base_length, base_width), )
         else:
             return self.maxheight(height, width, length, n - 1, base_length, base_width)
 
